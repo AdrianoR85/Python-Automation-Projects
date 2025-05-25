@@ -1,0 +1,15 @@
+2025-05-25T14:19:12.872652 - ❌ Diretório não encontrado: C:\Users\adria\Download
+2025-05-25T14:30:17.290518 - 📁 Criada a pasta: TEST_FOLDER
+2025-05-25T14:30:28.829089 - 📁 Criada a pasta: TEST_FOLDER
+2025-05-25T14:33:41.053020 - 📁 Criada a pasta: TEST_FOLDER
+2025-05-25T14:42:38.819521 - 📁 Criada a pasta: TEST_FOLDER
+2025-05-25T14:45:05.334328 - 📁 Criada a pasta: TEST_FOLDER
+2025-05-25T14:58:00.453975 - 📁 Criada a pasta: TEST_FOLDER
+2025-05-25T14:58:00.457637 - 📁 Criada a pasta: TXT
+2025-05-25T14:58:00.458978 - ✅ Movido: arquivo.txt -> C:\Users\adria\AppData\Local\Temp\tmpy_b_kglm\TXT\arquivo.txt
+2025-05-25T15:02:58.886217 - 📁 Criada a pasta: TEST_FOLDER
+2025-05-25T15:02:58.893156 - 📁 Criada a pasta: TXT
+2025-05-25T15:02:58.894449 - ✅ Movido: arquivo.txt -> C:\Users\adria\AppData\Local\Temp\tmpmcnhxdgy\TXT\arquivo.txt
+2025-05-25T15:03:09.946393 - 📁 Criada a pasta: TEST_FOLDER
+2025-05-25T15:03:09.950424 - 📁 Criada a pasta: TXT
+2025-05-25T15:03:09.951680 - ✅ Movido: arquivo.txt -> C:\Users\adria\AppData\Local\Temp\tmp3i0b2qs9\TXT\arquivo.txt
