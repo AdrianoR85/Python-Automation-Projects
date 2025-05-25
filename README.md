@@ -63,6 +63,56 @@ Downloads/
 │ └── script.py
 ```
 
+#### ▶️ How to Run
+
+```bash
+# Default: organizes the Downloads folder
+python organizer.py
+
+# Or specify a folder
+python organizer.py "C:\Users\yourname\Documents\MyFiles"
+```
+#### ⏰ **Automate Daily Execution on Windows**
+You can schedule the file_organizer.py script to run automatically once a day using the Windows Task Scheduler. This keeps your folders organized without manual effort.
+
+#### 🧭 **Step-by-Step Instructions**
+1. **Open Task Scheduler** 
+  - Press Win + R, type taskschd.msc, and press Enter.
+
+
+  
+2. **Create a New Task**
+ - In the right-hand panel, click on "Create Task".
+3. **General Tab** 
+  - Name: File Organizer
+  - Check: "Run with highest privileges"
+  - Choose: "Run only when user is logged on"
+4. **Triggers Tab**
+  - Click "New..."
+  - Begin the task: On a schedule
+  - Settings: the schedule frequency that suits you (e.g., Daily, Weekly, Monthly, or Hourly)
+  - Start: Choose your preferred time (e.g., 08:00 AM)
+5. **Actions Tab**
+  - Click "New..."
+  - Action: Start a program
+  - Program/script:
+  ```bash
+  python
+  ```
+  - **Add arguments (replace with your actual script path):**  :
+  ```bash
+  "C:\Users\YourUsername\Documents\Python\organizer\organizer.py"
+  ```
+6. **Conditions Tab (Optional)**
+ - Uncheck "Start the task only if the computer is on AC power" if you're on a laptop.
+7. **Save and Run**
+- Click OK to save.
+- To test it, right-click your task and select "Run".
+
+✅ Done! Your folder will be organized automatically every day.
+
+---
+
 ### 🧠 Generate Random Quiz Files
 
 This project generates multiple-choice quizzes on U.S. state capitals, where each quiz is randomly ordered and has a corresponding answer key.
