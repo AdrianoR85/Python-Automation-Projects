@@ -132,12 +132,6 @@ This project generates multiple-choice quizzes on U.S. state capitals, where eac
 
 ---
 
-## 📌 Status
-
-This repository is an ongoing study log and toolset. I’m continuing to build more projects to automate different kinds of tasks. Contributions, feedback, or ideas are welcome!
-
----
-
 ## 📬 Contact
 
 Feel free to reach out if you have ideas or questions — or just want to geek out about Python automation!
