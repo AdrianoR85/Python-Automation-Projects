@@ -5,11 +5,15 @@ class GitHubManagerApp:
   def __init__(self, master):
     self.master = master
     master.title("Gerenciador de Seguidores/Seguindo do GitHub")
-    master.geometry("700x550")
+    master.geometry("580x550")
 
     # Variáveis para armazenar o texto dos campos de entrada
     self.git_user = tk.StringVar()
     self.my_token = tk.StringVar()
+
+    # Listas para armazenar os dados (inicialmente vazias)
+    self.users_to_follow = []
+    self.users_to_unfollow = []
 
     # Frame para organizar os campos de entrada
     input_frame = tk.Frame(master, padx=10, pady=10)
@@ -29,12 +33,43 @@ class GitHubManagerApp:
     self.analyze_button = tk.Button(input_frame, text="Analisar Relações do GitHub", command=self.analyze_relations)
     self.analyze_button.grid(row=2, columnspan=2, pady=2)
 
-    # Placeholder para o método analyze_relations que será implementado depois
-    self.analyze_relations_called = False
+    # Frame para os resultados (Listboxes)
+    result_frame = tk.Frame(master, padx=10, pady=10)
+    result_frame.pack(fill=tk.BOTH, expand=True)
+
+    # Usuários a Seguir (LabelFrame e Listbox)
+    follow_frame = tk.LabelFrame(result_frame, text="Usuários a Seguir", padx=5, pady=5)
+    follow_frame.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
+
+    self.follow_listbox = tk.Listbox(follow_frame, height=15, width=40)
+    self.follow_listbox.pack(fill=tk.BOTH, expand=True)
+
+    # Usuários a Deixar de Seguir (LabelFrame e Listbox)
+    unfollow_frame = tk.LabelFrame(result_frame, text="Usuários para deixar de Seguir", padx=5, pady=5)
+    unfollow_frame.grid(row=0, column=1, padx=10, pady=10, sticky="nsew")
+
+    self.unfollow_listbox = tk.Listbox(unfollow_frame, height=15, width=40)
+    self.unfollow_listbox.pack(fill=tk.BOTH, expand=True)
+
+    # Configurações para que os frames e listboxes se expandam com a janela
+    result_frame.grid_columnconfigure(0, weight=1)
+    result_frame.grid_columnconfigure(1, weight=1)
+    result_frame.grid_rowconfigure(0, weight=1)
+
 
   def analyze_relations(self):
-    # Este método será implementado mais adiante
-    # Por enquanto, apenas mostra que foi chamado
-    self.analyze_relations_called = True
-    print(f"Usuário: {self.git_user.get()}")
-    print(f"Token: {self.my_token.get()}")
+    # Simula o preenchimento das listas para testar a GUI
+    self.users_to_follow = ["userA", "userB", "userC"]
+    self.users_to_unfollow = ["userX", "userY"]
+    self.update_listboxes()
+    print("Listas atualizadas (simulado).")
+
+  def update_listboxes(self):
+    """Atualiza as Listboxes com os usuários a seguir e a deixar de seguir."""
+    self.follow_listbox.delete(0, tk.END) # Limpa a listbox antes de adicionar novos itens
+    for user in self.users_to_follow:
+      self.follow_listbox.insert(tk.END, user) # Adiciona cada usuário ao final da listbox
+
+    self.unfollow_listbox.delete(0,tk.END)
+    for user in self.users_to_unfollow:
+      self.unfollow_listbox.insert(tk.END, user)
