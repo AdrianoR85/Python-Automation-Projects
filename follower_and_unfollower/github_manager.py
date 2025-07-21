@@ -44,12 +44,20 @@ class GitHubManagerApp:
     self.follow_listbox = tk.Listbox(follow_frame, height=15, width=40)
     self.follow_listbox.pack(fill=tk.BOTH, expand=True)
 
+    # Botão para seguir
+    self.follow_buttom = tk.Button(follow_frame, text="Seguir Todos Exibidos", command=self.perform_follow)
+    self.follow_buttom.pack(pady=5)
+
     # Usuários a Deixar de Seguir (LabelFrame e Listbox)
     unfollow_frame = tk.LabelFrame(result_frame, text="Usuários para deixar de Seguir", padx=5, pady=5)
     unfollow_frame.grid(row=0, column=1, padx=10, pady=10, sticky="nsew")
 
     self.unfollow_listbox = tk.Listbox(unfollow_frame, height=15, width=40)
     self.unfollow_listbox.pack(fill=tk.BOTH, expand=True)
+
+    # Botão para deixar de seguir
+    self.unfollow_buttom = tk.Button(unfollow_frame, text="Deixar de Seguir Todos Exibidos", command=self.perform_unfollow)
+    self.unfollow_buttom.pack(pady=5)
 
     # Configurações para que os frames e listboxes se expandam com a janela
     result_frame.grid_columnconfigure(0, weight=1)
@@ -73,3 +81,15 @@ class GitHubManagerApp:
     self.unfollow_listbox.delete(0,tk.END)
     for user in self.users_to_unfollow:
       self.unfollow_listbox.insert(tk.END, user)
+  
+  def perform_follow(self):
+    print("Botão 'Seguir Todos Exibidos' clicado!")
+    print(f"Usuários a seguir: {self.users_to_follow}")
+    self.users_to_follow = []
+    self.update_listboxes()
+
+  def perform_unfollow(self):
+    print("Botão 'Deixar de Seguir Todos Exibidos' clicado!")
+    print(f"Usuários a deixar de seguir: {self.users_to_unfollow}")
+    self.users_to_unfollow = []
+    self.update_listboxes()
