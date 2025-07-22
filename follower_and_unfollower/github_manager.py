@@ -64,6 +64,12 @@ class GitHubManagerApp:
     result_frame.grid_columnconfigure(1, weight=1)
     result_frame.grid_rowconfigure(0, weight=1)
 
+    self.status_label = tk.Label(master, text="Pronto", bd=1, relief=tk.SUNKEN, anchor=tk.W)
+    self.status_label.pack(side=tk.BOTTOM, fill=tk.X)
+
+  def update_status(self, message):
+    self.status_label.config(text=message)
+    self.master.update_idletasks()
 
   def analyze_relations(self):
     # Simula o preenchimento das listas para testar a GUI
@@ -83,13 +89,17 @@ class GitHubManagerApp:
       self.unfollow_listbox.insert(tk.END, user)
   
   def perform_follow(self):
+    self.update_status("Executando ações de seguir")
     print("Botão 'Seguir Todos Exibidos' clicado!")
     print(f"Usuários a seguir: {self.users_to_follow}")
     self.users_to_follow = []
     self.update_listboxes()
+    self.update_status("Ações de seguir concluídas")
 
   def perform_unfollow(self):
+    self.update_status("Executando ações de deixar de seguir")
     print("Botão 'Deixar de Seguir Todos Exibidos' clicado!")
     print(f"Usuários a deixar de seguir: {self.users_to_unfollow}")
     self.users_to_unfollow = []
     self.update_listboxes()
+    self.update_status("Ações de deixar de seguir concluídas")
