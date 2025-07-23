@@ -23,8 +23,7 @@ def get_users(git_user, relation_type, token=None, status_callback=None):
             msg = f"Error ao buscar {relation_type}: {response.status_code} - {response.text}"
             if status_callback:
                 status_callback(msg)
-            print(msg)
-            break
+            raise requests.exceptions.RequestException(msg)
         
         data = response.json()
         if not data:

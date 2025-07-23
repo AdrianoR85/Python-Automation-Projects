@@ -1,5 +1,7 @@
 import tkinter as tk
-from api import get_users
+from tkinter import messagebox
+from api import get_users, follow_users, unfollow_users
+import requests
 
 class GitHubManagerApp:
   def __init__(self, master):
@@ -10,7 +12,8 @@ class GitHubManagerApp:
     # Variáveis para armazenar o texto dos campos de entrada
     self.git_user = tk.StringVar()
     self.my_token = tk.StringVar()
-
+    self.followers_list = [] # Adicionado para armazenar a lista de seguidores
+    self.following_list = [] # Adicionado para armazenar a lista de quem o usuário segue
     # Listas para armazenar os dados (inicialmente vazias)
     self.users_to_follow = []
     self.users_to_unfollow = []
@@ -72,11 +75,36 @@ class GitHubManagerApp:
     self.master.update_idletasks()
 
   def analyze_relations(self):
-    # Simula o preenchimento das listas para testar a GUI
-    self.users_to_follow = ["userA", "userB", "userC"]
-    self.users_to_unfollow = ["userX", "userY"]
-    self.update_listboxes()
-    print("Listas atualizadas (simulado).")
+    git_user = self.git_user.get().strip()
+    my_token = self.my_token.get().strip()
+
+    if not git_user:
+      messagebox.showerror("Erro de Entrada", "Por favor, insira seu nome de usuário do GitHub.")
+      return
+    if not my_token:
+      messagebox.showerror("Erro de Entrada", "Por favor, insira seu Token de Acesso Pessoal do GitHub.")
+      return
+    
+    self.update_status("Analisando relações...")
+
+    try:
+      self.followers_list = get_users(git_user, "followers", my_token, self.update_status)
+      self.following_list = get_users(git_user, "following", my_token, self.update_status)
+
+      self.users_to_follow = [user for user in self.followers_list if user not in self.following_list]
+      self.users_to_unfollow = [user for user in self.following_list if user not in self.followers_list]
+
+      self.update_listboxes()
+      self.update_status(f"Análise completa. Encontrados {len(self.users_to_follow)} usuários para seguir e {len(self.users_to_unfollow)} para deixar de seguir.")
+
+    except requests.exceptions.RequestException as e:
+      messagebox.showerror("Erro de Rede", f"Não foi possível conectar à API do GitHub: {e}")
+      self.update_status("Erro durante a análise.")
+
+    except Exception as e:
+      messagebox.showerror("Erro", f"Ocorreu um erro inesperado: {e}")
+      self.update_status("Erro durante a análise.")
+
 
   def update_listboxes(self):
     """Atualiza as Listboxes com os usuários a seguir e a deixar de seguir."""
