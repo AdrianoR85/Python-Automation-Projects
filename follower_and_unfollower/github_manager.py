@@ -117,15 +117,24 @@ class GitHubManagerApp:
       self.unfollow_listbox.insert(tk.END, user)
   
   def perform_follow(self):
-    self.update_status("Executando ações de seguir")
-    print("Botão 'Seguir Todos Exibidos' clicado!")
-    print(f"Usuários a seguir: {self.users_to_follow}")
-    self.users_to_follow = []
-    self.update_listboxes()
-    self.update_status("Ações de seguir concluídas")
+    my_token = self.my_token.get().strip()
+    if not my_token:
+      messagebox.showerror("Erro de Entrada", "Por favor, insira seu Token de Acesso Pessoal do GitHub.")
+      return
+    
+    if not self.users_to_follow:
+      messagebox.showerror("Nenhum Usuário", "Não há usuários para seguir.")
+      return
+    
+    if messagebox.askyesno("Confirmar Seguir", f"Tem certeza que deseja seguir {len(self.users_to_follow)} usuários?"):
+      self.update_status("Executando ações de seguir...")
+      follow_users(my_token, self.users_to_follow, self.update_status)
+      self.update_status("Ações de seguir concluídas. Reanalise para atualizar as listas.")
+      self.users_to_follow = []
+      self.update_listboxes()
 
   def perform_unfollow(self):
-    self.update_status("Executando ações de deixar de seguir")
+    self.update_status("Executando ações de deixar de seguir...")
     print("Botão 'Deixar de Seguir Todos Exibidos' clicado!")
     print(f"Usuários a deixar de seguir: {self.users_to_unfollow}")
     self.users_to_unfollow = []
