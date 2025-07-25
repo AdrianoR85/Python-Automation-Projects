@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
-from api import get_users, follow_users, unfollow_users
+from api_connection import get_users, follow_users, unfollow_users
 import requests
 
 class GitHubManagerApp:
@@ -134,9 +134,19 @@ class GitHubManagerApp:
       self.update_listboxes()
 
   def perform_unfollow(self):
-    self.update_status("Executando ações de deixar de seguir...")
-    print("Botão 'Deixar de Seguir Todos Exibidos' clicado!")
-    print(f"Usuários a deixar de seguir: {self.users_to_unfollow}")
-    self.users_to_unfollow = []
-    self.update_listboxes()
-    self.update_status("Ações de deixar de seguir concluídas")
+    my_token = self.my_token.get().strip()
+
+    if not my_token:
+      messagebox.showerror("Erro de Entrada", "Por favor, insira seu Token de Acesso Pessoal do GitHub.")
+      return
+    
+    if not self.users_to_unfollow:
+      messagebox.showerror("Nenhum Usuário", "Não há usuários para deixar de seguir.")
+      return
+
+    if messagebox.askyesno("Confirmar Seguir", f"Tem certeza que deseja deixar de seguir {len(self.users_to_unfollow)} usuários?"):
+      self.update_status("Executando ações de deixar de seguir...")
+      unfollow_users(my_token, self.users_to_unfollow, self.update_status)
+      self.update_status("Ações de deixar de seguir concluídas")
+      self.users_to_unfollow = []
+      self.update_listboxes()

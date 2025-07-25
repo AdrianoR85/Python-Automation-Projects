@@ -53,12 +53,12 @@ def unfollow_users(token, users_to_unfollow, status_callback=None):
             msg = f"✅ Deixou de seguir: {username}"
             if status_callback:
                 status_callback(msg)
-            print(msg)
+        
         else:
             msg = f"❌ Erro ao deixar de seguir {username}: {response.status_code} - {response.text}"
             if status_callback:
                 status_callback(msg)
-            print(msg) 
+             
 
 def follow_users(token, users_to_follow, status_callback=None):
     headers = {
@@ -74,14 +74,15 @@ def follow_users(token, users_to_follow, status_callback=None):
             msg = f"✅ Agora você está seguindo: {username}"
             if status_callback:
                 status_callback(msg)
-            print(msg)
+            # raise requests.exceptions.RequestException(msg)
+        
         elif response.status_code == 404:
             msg = f"❌ Usuário {username} não encontrado."
             if status_callback:
                 status_callback(msg)
-            print(msg)
+            # raise requests.exceptions.RequestException(msg)    
         else:
             msg = f"⚠️  Erro ao seguir {username}: {response.status_code} - {response.text}"
             if status_callback:
                 status_callback(msg)
-            print(msg)
+            # raise requests.exceptions.RequestException(msg)
