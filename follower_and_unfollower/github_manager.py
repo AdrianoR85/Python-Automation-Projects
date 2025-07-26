@@ -8,6 +8,24 @@ class GitHubManagerApp:
     self.master = master
     master.title("Gerenciador de Seguidores/Seguindo do GitHub")
     master.geometry("580x550")
+    
+    # Esquema de cores claro
+    self.colors = {
+        'bg_primary': '#f7fafc',      # Branco acinzentado
+        'bg_secondary': '#edf2f7',    # Cinza muito claro
+        'bg_accent': '#ffffff',       # Branco puro
+        'fg_primary': '#2d3748',      # Cinza escuro
+        'fg_secondary': '#4a5568',    # Cinza médio
+        'button_bg': '#3182ce',       # Azul
+        'button_hover': '#2c5aa0',    # Azul mais escuro
+        'button_danger': '#e53e3e',   # Vermelho
+        'entry_bg': '#ffffff',        # Branco
+        'entry_fg': '#2d3748',        # Cinza escuro
+        'status_bg': '#e2e8f0',       # Cinza claro
+        'border': '#cbd5e0',          # Cinza para bordas
+    }
+
+    master.configure(bg=self.colors['bg_primary'])
 
     # Variáveis para armazenar o texto dos campos de entrada
     self.git_user = tk.StringVar()
@@ -19,55 +37,151 @@ class GitHubManagerApp:
     self.users_to_unfollow = []
 
     # Frame para organizar os campos de entrada
-    input_frame = tk.Frame(master, padx=10, pady=10)
+    input_frame = tk.Frame(master, padx=10, pady=10, bg=self.colors['bg_secondary'], relief="raised", bd=1)
     input_frame.pack(fill=tk.X)
 
     # Rótulo e Campo de Entrada para o Nome de Usuário
-    tk.Label(input_frame, text="Nome do usuário do GitHub:").grid(row=0, column=0, sticky=tk.W, pady=2)
-    self.git_user_entry = tk.Entry(input_frame, textvariable=self.git_user, width=40)
-    self.git_user_entry.grid(row=0, column=1, pady=2)
+    tk.Label(input_frame, 
+            text="Nome do usuário do GitHub:",
+            bg=self.colors['bg_secondary'],
+            fg=self.colors['fg_primary'],
+            font=("Arial", 10, "bold")).grid(row=0, column=0, sticky=tk.W, pady=2)
+    self.git_user_entry = tk.Entry(input_frame, 
+                                  textvariable=self.git_user, 
+                                  width=44,
+                                  bg=self.colors["entry_bg"],
+                                  fg=self.colors["entry_fg"],
+                                  insertbackground=self.colors["entry_fg"],
+                                  relief="solid",
+                                  bd=1,
+                                  font=("Arial", 10))
+    self.git_user_entry.grid(row=0, column=1, pady=4)
 
     # Rótulo e Campo de Entrada para o Token do Usuário
-    tk.Label(input_frame, text="Token de Acesso Pessoal do GitHub:").grid(row=1, column=0, sticky=tk.W, pady=2)
-    self.my_token_entry = tk.Entry(input_frame, textvariable=self.my_token, width=40)
-    self.my_token_entry.grid(row=1, column=1, pady=2)
+    tk.Label(input_frame, 
+            text="Token de Acesso Pessoal do GitHub:",
+            bg=self.colors['bg_secondary'],
+            fg=self.colors['fg_primary'],
+            font=("Arial", 10, "bold")).grid(row=1, column=0, sticky=tk.W, pady=2)
+    
+    self.my_token_entry = tk.Entry(input_frame, 
+                                  textvariable=self.my_token, 
+                                  width=44,
+                                  bg=self.colors["entry_bg"],
+                                  fg=self.colors["entry_fg"],
+                                  insertbackground=self.colors["entry_fg"],
+                                  relief="solid",
+                                  bd=1,
+                                  font=("Arial", 9))
+    self.my_token_entry.grid(row=1, column=1, pady=4)
 
     # Botão para iniciar a análise
-    self.analyze_button = tk.Button(input_frame, text="Analisar Relações do GitHub", command=self.analyze_relations)
-    self.analyze_button.grid(row=2, columnspan=2, pady=2)
+    self.analyze_button = tk.Button(input_frame, 
+                                    text="Analisar Relações do GitHub", 
+                                    command=self.analyze_relations,
+                                    bg=self.colors['button_bg'],
+                                    fg='white',
+                                    font=('Arial', 10, 'bold'),
+                                    relief='raised',
+                                    bd=2,
+                                    padx=8,
+                                    pady=4,
+                                    cursor='hand2')
+    self.analyze_button.grid(row=2, columnspan=2, pady=10)
 
     # Frame para os resultados (Listboxes)
     result_frame = tk.Frame(master, padx=10, pady=10)
     result_frame.pack(fill=tk.BOTH, expand=True)
 
     # Usuários a Seguir (LabelFrame e Listbox)
-    follow_frame = tk.LabelFrame(result_frame, text="Usuários a Seguir", padx=5, pady=5)
-    follow_frame.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
+    follow_frame = tk.LabelFrame(result_frame, 
+                                text="✅ Usuários a Seguir", 
+                                padx=10, 
+                                pady=10,
+                                bg=self.colors["bg_secondary"],
+                                fg=self.colors["fg_primary"],
+                                font=("Arial", 10, "bold"),
+                                relief="raised",
+                                bd=2)
+    follow_frame.grid(row=0, column=0, padx=5, pady=5, sticky="nsew")
 
-    self.follow_listbox = tk.Listbox(follow_frame, height=15, width=40)
-    self.follow_listbox.pack(fill=tk.BOTH, expand=True)
+    self.follow_listbox = tk.Listbox(follow_frame,
+                                    height=15, 
+                                    width=28,
+                                    bg=self.colors['bg_accent'],
+                                    fg=self.colors['fg_primary'],
+                                    selectbackground=self.colors['button_bg'],
+                                    selectforeground='white',
+                                    font=('Consolas', 10),
+                                    relief='sunken',
+                                    bd=2)
+    self.follow_listbox.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
 
     # Botão para seguir
-    self.follow_buttom = tk.Button(follow_frame, text="Seguir Todos Exibidos", command=self.perform_follow)
-    self.follow_buttom.pack(pady=5)
+    self.follow_buttom = tk.Button(follow_frame,
+                                  text="Seguir Todos", 
+                                  command=self.perform_follow,
+                                  bg=self.colors['button_bg'],
+                                  fg='white',
+                                  font=('Arial', 10, 'bold'),
+                                  relief='raised',
+                                  bd=2,
+                                  padx=8,
+                                  pady=4,
+                                  cursor='hand2')
+    self.follow_buttom.pack(pady=10)
 
     # Usuários a Deixar de Seguir (LabelFrame e Listbox)
-    unfollow_frame = tk.LabelFrame(result_frame, text="Usuários para deixar de Seguir", padx=5, pady=5)
-    unfollow_frame.grid(row=0, column=1, padx=10, pady=10, sticky="nsew")
+    unfollow_frame = tk.LabelFrame(result_frame, 
+                                  text="❌ Usuários para deixar de Seguir",
+                                  padx=10, 
+                                  pady=10,
+                                  bg=self.colors["bg_secondary"],
+                                  fg=self.colors["fg_primary"],
+                                  font=("Arial", 10, "bold"),
+                                  relief="raised",
+                                  bd=2)
+    unfollow_frame.grid(row=0, column=1, padx=5, pady=5, sticky="nsew")
 
-    self.unfollow_listbox = tk.Listbox(unfollow_frame, height=15, width=40)
-    self.unfollow_listbox.pack(fill=tk.BOTH, expand=True)
+    self.unfollow_listbox = tk.Listbox(unfollow_frame, 
+                                    height=15, 
+                                    width=28,
+                                    bg=self.colors['bg_accent'],
+                                    fg=self.colors['fg_primary'],
+                                    selectbackground=self.colors['button_bg'],
+                                    selectforeground='white',
+                                    font=('Consolas', 10),
+                                    relief='sunken',
+                                    bd=2)
+    self.unfollow_listbox.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
 
     # Botão para deixar de seguir
-    self.unfollow_buttom = tk.Button(unfollow_frame, text="Deixar de Seguir Todos Exibidos", command=self.perform_unfollow)
-    self.unfollow_buttom.pack(pady=5)
+    self.unfollow_buttom = tk.Button(unfollow_frame, 
+                                    text="Deixar de Seguir Todos", 
+                                    command=self.perform_unfollow,
+                                    bg=self.colors['button_danger'],
+                                    fg='white',
+                                    font=('Arial', 10, 'bold'),
+                                    relief='raised',
+                                    bd=2,
+                                    padx=8,
+                                    pady=4,
+                                    cursor='hand2')
+    self.unfollow_buttom.pack(pady=10)
 
     # Configurações para que os frames e listboxes se expandam com a janela
     result_frame.grid_columnconfigure(0, weight=1)
     result_frame.grid_columnconfigure(1, weight=1)
     result_frame.grid_rowconfigure(0, weight=1)
 
-    self.status_label = tk.Label(master, text="Pronto", bd=1, relief=tk.SUNKEN, anchor=tk.W)
+    self.status_label = tk.Label(master, 
+                                text="✅ Pronto", 
+                                bd=2, 
+                                relief=tk.SUNKEN, 
+                                anchor=tk.W,
+                                bg=self.colors['status_bg'],
+                                fg=self.colors['fg_primary'],
+                                font=('Arial', 10))
     self.status_label.pack(side=tk.BOTTOM, fill=tk.X)
 
   def update_status(self, message):
