@@ -18,4 +18,21 @@ image = CTkImage(Image.open("assets/cover.png"), size=(930,478))
 imageLabel=CTkLabel(root, image=image, text="")
 imageLabel.place(x=0, y=0)
 
+handlingLabel = CTkLabel(root, 
+                        text="Employee Management System", 
+                        bg_color="#FFFFFF",
+                        font=("Goudy Old Style", 20, "bold"),
+                        text_color="dark blue" 
+                      )
+handlingLabel.place(x=20, y=100)
+
+usernameEntry = CTkEntry(root, width=180, placeholder_text="Enter your username")
+usernameEntry.place(x=50, y=150)
+
+passwordEntry = CTkEntry(root, width=180, placeholder_text="Enter your password", show="*")
+passwordEntry.place(x=50, y=200)
+
+loginBtn = CTkButton(root, text="Login", cursor="hand2")
+loginBtn.place(x=70, y=250)
+
 root.mainloop()
