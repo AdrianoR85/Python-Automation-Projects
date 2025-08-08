@@ -5,7 +5,7 @@ Global application settings
 # Window Setting
 WINDOW_CONFIG = {
   'width': 930,
-  'heigth': 478,
+  'height': 478,
   'title': 'Employee Management System - Login',
   'resizable': False
 }
@@ -30,7 +30,7 @@ FONTS = {
 }
 
 #Asset paths
-ASSEST = {
+ASSETS = {
   'cover_image': 'assets/cover.png'
 }
 

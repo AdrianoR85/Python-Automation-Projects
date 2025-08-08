@@ -1,8 +1,6 @@
 from customtkinter import CTk
-from gui.login_gui import LoginPage
+from gui.login_gui import LoginGUI
 
 if __name__ == "__main__":
-  root = CTk()
-  ms = LoginPage(root)
-  root.mainloop()
-  
+  app = LoginGUI()
+  app.mainloop()
