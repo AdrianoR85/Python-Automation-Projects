@@ -1,69 +1,55 @@
-# 🛠 Python Automation Projects
+# Python Project Portfolio
 
-[![Python](https://img.shields.io/badge/Python-3.13+-blue?logo=python)](https://www.python.org/)
-[![Status](https://img.shields.io/badge/Status-In%20Progress-yellow)]()
+Hello! This repository serves as my central portfolio, dedicated to showcasing my Python skills through a variety of hands-on projects. Here you'll find everything from web applications and automation scripts to data analysis studies. Please browse the menu below to explore each project individually.
 
-This repository contains a collection of projects and scripts focused on **automating everyday tasks with Python**. While it was initially inspired by the book [Automate the Boring Stuff with Python](https://automatetheboringstuff.com/) by Al Sweigart, the scope has grown to include personal experiments, studies, and practical tools in Python automation.
+<p align="center">
+  <img src="https://img.shields.io/badge/Web_Development-007ACC?style=for-the-badge&logo=w3c&logoColor=white" alt="Web Development"/>
+  <img src="https://img.shields.io/badge/Data_Science-9B59B6?style=for-the-badge&logo=pydatadotorg&logoColor=white" alt="Data Science"/>
+  <img src="https://img.shields.io/badge/Automation-F5428D?style=for-the-badge&logo=robotframework&logoColor=white" alt="Automation"/>
+  <img src="https://img.shields.io/badge/Desktop_Apps-5E5C64?style=for-the-badge&logo=gnome&logoColor=white" alt="Desktop Apps"/>
+  <img src="https://img.shields.io/badge/APIs_&_Microservices-6B21A8?style=for-the-badge&logo=serverless&logoColor=white" alt="APIs & Microservices"/>
+  <img src="https://img.shields.io/badge/Machine_Learning-00A693?style=for-the-badge&logo=openai&logoColor=white" alt="Machine Learning"/>
+</p>
 
-## 🎯 Purpose
+## 📋 Projects Menu
 
-The goal of this repository is to **practice and reinforce Python programming skills** by building automation scripts that solve real-world problems. These projects involve working with files, organizing folders, generating content, and more.
+Here is a list of all projects contained in this repository. Click on a name to be directed to its detailed description.
 
-## 🚀 What You'll Find Here
-
-This repository includes:
-
-- ✅ Projects inspired by the book
-- 🧪 Independent automation tools and experiments
-- ⚙️ Small utilities to automate boring tasks
-- 📝 Notes and personal improvements
+- [File Organization](#-File-Organization)
+- [Project Name 2](#-project-2)
+- [Project Name 3](#-project-3)
 
 ---
+## 🚀 File Organization <img src="https://img.shields.io/badge/Automation-F5428D?style=for-the-badge&logo=robotframework&logoColor=white" alt="Automation"/>
+### Description
+This project is a Python automation script that organizes files in a specified folder (default: Downloads) into subfolders based on their extensions.
+It automatically creates the necessary folders, handles duplicate filenames by adding a counter, and logs all actions in a .txt file..
 
-## 📁 Project Structure
+### Technologies Used
+<p>
+<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/> 
+<img src="https://img.shields.io/badge/Pathlib-222222?style=for-the-badge&logo=python&logoColor=white" alt="Pathlib"/>
+<img src="https://img.shields.io/badge/Shutil-404040?style=for-the-badge&logo=python&logoColor=white" alt="Shutil"/> 
+<img src="https://img.shields.io/badge/Unittest-6B21A8?style=for-the-badge&logo=python&logoColor=white" alt="Unittest"/>
+</p>
 
-```
-Python-Automation-Projects/
-│
-├── project_quiz_generator/ # Random quiz file generator
-├── project_file_organizer/ # Script to organize files by extension
-├── README.md
-└── ...
-```
----
-
-## 🧠 Featured Projects
-
-### 📄 File Organizer by Extension
-
-This project automatically organizes files in a directory by their file extensions. It moves each file into a folder named after its extension, helping keep your workspace clean and organized.
-
-**Key Features:**
-- Handles files without extensions
-- Prevents overwriting by renaming duplicates
-- Logs all actions to a log file
-- Supports CLI arguments to specify target directory
-
-📁 Example:
-
-```
-Before:
-Downloads/
-├── report.pdf
-├── photo.jpg
-├── script.py
-
-After:
-Downloads/
-├── PDF/
-│ └── report.pdf
-├── JPG/
-│ └── photo.jpg
-├── PY/
-│ └── script.py
+### Project Structure
+```📂 project_root
+ ├── organizer.py        # Main script
+ ├── organizer_log.txt   # Log file generated automatically
+ ├── test/
+ │   └── test.py         # Unit tests
+ ├── README.md           # Project documentation
 ```
 
-#### ▶️ How to Run
+### Features
+- Organizes files by extension into separate folders.
+- Creates missing folders automatically.
+- Avoids overwriting files with the same name by renaming them.
+- Generates a detailed log of all actions.
+- Includes automated unit tests.
+
+### ▶️ How to Run
 
 ```bash
 # Default: organizes the Downloads folder
@@ -77,25 +63,22 @@ You can schedule the file_organizer.py script to run automatically once a day us
 
 #### 🧭 **Step-by-Step Instructions**
 1. **Open Task Scheduler** 
-  - Press Win + R, type taskschd.msc, and press Enter.
-
-
-  
+    - Press Win + R, type taskschd.msc, and press Enter.
 2. **Create a New Task**
- - In the right-hand panel, click on "Create Task".
+    - In the right-hand panel, click on "Create Task".
 3. **General Tab** 
-  - Name: File Organizer
-  - Check: "Run with highest privileges"
-  - Choose: "Run only when user is logged on"
+    - Name: File Organizer
+    - Check: "Run with highest privileges"
+    - Choose: "Run only when user is logged on"
 4. **Triggers Tab**
-  - Click "New..."
-  - Begin the task: On a schedule
-  - Settings: the schedule frequency that suits you (e.g., Daily, Weekly, Monthly, or Hourly)
-  - Start: Choose your preferred time (e.g., 08:00 AM)
+    - Click "New..."
+    - Begin the task: On a schedule
+    - Settings: the schedule frequency that suits you (e.g., Daily, Weekly, Monthly, or Hourly)
+    - Start: Choose your preferred time (e.g., 08:00 AM)
 5. **Actions Tab**
-  - Click "New..."
-  - Action: Start a program
-  - Program/script:
+    - Click "New..."
+    - Action: Start a program
+    - Program/script:
   ```bash
   python
   ```
@@ -104,12 +87,32 @@ You can schedule the file_organizer.py script to run automatically once a day us
   "C:\Users\YourUsername\Documents\Python\organizer\organizer.py"
   ```
 6. **Conditions Tab (Optional)**
- - Uncheck "Start the task only if the computer is on AC power" if you're on a laptop.
+   - Uncheck "Start the task only if the computer is on AC power" if you're on a laptop.
 7. **Save and Run**
-- Click OK to save.
-- To test it, right-click your task and select "Run".
+  - Click OK to save.
+  - To test it, right-click your task and select "Run".
 
 ✅ Done! Your folder will be organized automatically every day.
+
+### Example
+Before
+``` 
+Downloads/
+ ├── report.pdf
+ ├── image.png
+ ├── script.py
+```
+
+After
+```
+Downloads/
+ ├── PDF/
+ │   └── report.pdf
+ ├── PNG/
+ │   └── image.png
+ ├── PY/
+ │   └── script.py
+```
 
 ---
 
@@ -125,14 +128,7 @@ This project generates multiple-choice quizzes on U.S. state capitals, where eac
 
 ---
 
-## 🛠 Technologies
-
-- Python 3.x
-- Standard Library only (unless otherwise noted)
-
----
-
 ## 📬 Contact
 
-Feel free to reach out if you have ideas or questions — or just want to geek out about Python automation!
+Feel free to reach out if you have ideas or questions — or just want to geek out about Python!
 
