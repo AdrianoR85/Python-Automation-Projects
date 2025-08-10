@@ -14,11 +14,11 @@ Hello! This repository serves as my central portfolio, dedicated to showcasing m
 ## 📋 Projects Menu
 Here’s the list of projects in this portfolio.  
 Click a project name to jump to its section.
-- [x] [File Organization](#-file-frganization)
+- [x] [File Organization](#-file-organization)
 - [x] [Github Manager](#-gitHub-manager)
 - [ ] [Employee Management](#-employee-management)
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## 🚀 File Organization 
 <p>
