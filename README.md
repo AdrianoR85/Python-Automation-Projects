@@ -151,14 +151,14 @@ It lets you:
    ```
 2. Instale as dependências
 Certifique-se de ter o Python 3.8+ instalado. Depois, execute:
-  ```
-  pip install -r requirements.txt
-  ```
+   ```
+   pip install -r requirements.txt
+   ```
 3. Execute o projeto
 Dependendo do projeto, pode variar:
-  ```
-    python main.py
-  ```
+   ```
+     python app.py
+   ```
 ### Image
 
 ---
