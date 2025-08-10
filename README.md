@@ -116,7 +116,7 @@ Downloads/
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-## 🚀 GitHub Manager <img src="https://img.shields.io/badge/Desktop_Apps-5E5C64?style=for-the-badge&logo=gnome&logoColor=white" alt="Desktop Apps"/> <img src="https://img.shields.io/badge/APIs-6B21A8?style=for-the-badge&logo=serverless&logoColor=white" alt="APIs"/>
+## 🚀 GitHub Manager
 
 ### *Description*
 This project is a Python desktop application built with Tkinter that allows users to manage their GitHub relationships (followers and following) through the GitHub REST API.
