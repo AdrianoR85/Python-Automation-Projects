@@ -14,10 +14,9 @@ Hello! This repository serves as my central portfolio, dedicated to showcasing m
 ## 📋 Projects Menu
 Here’s the list of projects in this portfolio.  
 Click a project name to jump to its section.
-
-- [File Organization](#-file-frganization)
-- [Github Manager](#-gitHub-manager)
-- [Employee Management](#-employee-management)
+- [x] [File Organization](#-file-frganization)
+- [x] [Github Manager](#-gitHub-manager)
+- [ ] [Employee Management](#-employee-management)
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
