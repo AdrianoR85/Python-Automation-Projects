@@ -27,7 +27,9 @@ Click a project name to jump to its section.
 
 ### *Description*
 This project is a Python automation script that organizes files in a specified folder (default: Downloads) into subfolders based on their extensions.
-It automatically creates the necessary folders, handles duplicate filenames by adding a counter, and logs all actions in a .txt file..
+It automatically creates the necessary folders, handles duplicate filenames by adding a counter, and logs all actions in a .txt file.
+
+Code [Here](project_file_organizer)
 
 ### *Technologies Used*
 <p>
