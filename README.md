@@ -17,15 +17,20 @@ Click a project name to jump to its section.
 
 - [File Organization](#-file-frganization)
 - [Github Manager](#-gitHub-manager)
+- [Employee Management](#-employee-management)
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-## 🚀 File Organization <img src="https://img.shields.io/badge/Automation-F5428D?style=for-the-badge&logo=robotframework&logoColor=white" alt="Automation"/>
+## 🚀 File Organization 
+<p>
+  <img src="https://img.shields.io/badge/Automation-F5428D?style=for-the-badge&logo=robotframework&logoColor=white" alt="Automation"/>
+</p>
 
 ### *Description*
 This project is a Python automation script that organizes files in a specified folder (default: Downloads) into subfolders based on their extensions.
 It automatically creates the necessary folders, handles duplicate filenames by adding a counter, and logs all actions in a .txt file..
 
+### *Technologies Used*
 <p>
 <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/> 
 <img src="https://img.shields.io/badge/Pathlib-222222?style=for-the-badge&logo=python&logoColor=white" alt="Pathlib"/>
@@ -117,6 +122,10 @@ Downloads/
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## 🚀 GitHub Manager
+<P>
+  <img src="https://img.shields.io/badge/Desktop_Apps-5E5C64?style=for-the-badge&logo=gnome&logoColor=white" alt="Desktop Apps"/> 
+  <img src="https://img.shields.io/badge/APIs-6B21A8?style=for-the-badge&logo=serverless&logoColor=white" alt="APIs"/>
+</P>
 
 ### *Description*
 This project is a Python desktop application built with Tkinter that allows users to manage their GitHub relationships (followers and following) through the GitHub REST API.
@@ -126,6 +135,7 @@ It lets you:
 - Follow or unfollow users in bulk with a single click.
 - Track the process with a live status bar.
 
+### *Technologies Used*
 <p>
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/> 
   <img src="https://img.shields.io/badge/Tkinter-FFDD00?style=for-the-badge&logo=python&logoColor=black" alt="Tkinter"/> 
@@ -176,13 +186,20 @@ Dependendo do projeto, pode variar:
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## 🚀 Employee Management
+<p>
+  <img src="https://img.shields.io/badge/Desktop_Apps-5E5C64?style=for-the-badge&logo=gnome&logoColor=white" alt="Desktop Apps"/> 
+</p>
 
 ### *Description*
+
+### *Technologies Used*
+<p>
+  
+</p>
 
 ### *Project Structure*
 
 ### *Features*
-
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## 📬 Contact
