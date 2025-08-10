@@ -15,8 +15,8 @@ Hello! This repository serves as my central portfolio, dedicated to showcasing m
 Here’s the list of projects in this portfolio.  
 Click a project name to jump to its section.
 
-- [File Organization](#-File-Organization)
-- [Github Manager](#-GitHub-Manager)
+- [File Organization](##-file-frganization)
+- [Github Manager](##-gitHub-manager)
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
