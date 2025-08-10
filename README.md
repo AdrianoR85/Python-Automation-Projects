@@ -12,14 +12,14 @@ Hello! This repository serves as my central portfolio, dedicated to showcasing m
 </p>
 
 ## 📋 Projects Menu
-
-Here is a list of all projects contained in this repository. Click on a name to be directed to its detailed description.
+Here’s the list of projects in this portfolio.  
+Click a project name to jump to its section.
 
 - [File Organization](#-File-Organization)
-- [Project Name 2](#-project-2)
-- [Project Name 3](#-project-3)
+- [Github Manager](#-GitHub-Manager)
 
----
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 ## 🚀 File Organization <img src="https://img.shields.io/badge/Automation-F5428D?style=for-the-badge&logo=robotframework&logoColor=white" alt="Automation"/>
 ### Description
 This project is a Python automation script that organizes files in a specified folder (default: Downloads) into subfolders based on their extensions.
@@ -114,17 +114,52 @@ Downloads/
  │   └── script.py
 ```
 
----
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### 🧠 Generate Random Quiz Files
+## GitHub Manager
 
-This project generates multiple-choice quizzes on U.S. state capitals, where each quiz is randomly ordered and has a corresponding answer key.
+This project is a Python desktop application built with Tkinter that allows users to manage their GitHub relationships (followers and following) through the GitHub REST API.
+It lets you:
+- View which followers you are not following back.
+- View which users you follow that do not follow you back.
+- Follow or unfollow users in bulk with a single click.
+- Track the process with a live status bar.
+- 
+### Features
+- Connects to the GitHub API with a Personal Access Token.
+- Retrieves complete followers and following lists with pagination.
+- Compares relationships to identify:
+- Users you can follow back.
+- Users you may want to unfollow.
+- Execute follow/unfollow actions in bulk.
+- Clean and responsive Tkinter GUI.
+- Status updates for each action.
 
-**Skills Practiced:**
-- Working with dictionaries
-- File I/O and formatting
-- Loops and logic
-- Randomization
+### Technologies Used
+<p>
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/> 
+  <img src="https://img.shields.io/badge/Tkinter-FFDD00?style=for-the-badge&logo=python&logoColor=black" alt="Tkinter"/> 
+  <img src="https://img.shields.io/badge/Requests-404040?style=for-the-badge&logo=python&logoColor=white" alt="Requests"/> 
+  <img src="https://img.shields.io/badge/GitHub_API-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub API"/>
+</p>
+
+### How to Use
+1. Clone este repositório
+   ```
+   git clone https://github.com/AdrianoR85/Python-Automation-Projects.git
+   cd Python-Automation-Projects/github_manager
+   ```
+2. Instale as dependências
+Certifique-se de ter o Python 3.8+ instalado. Depois, execute:
+  ```
+  pip install -r requirements.txt
+  ```
+3. Execute o projeto
+Dependendo do projeto, pode variar:
+  ```
+    python main.py
+  ```
+### Image
 
 ---
 
