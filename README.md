@@ -7,7 +7,7 @@ Hello! This repository serves as my central portfolio, dedicated to showcasing m
   <img src="https://img.shields.io/badge/Data_Science-9B59B6?style=for-the-badge&logo=pydatadotorg&logoColor=white" alt="Data Science"/>
   <img src="https://img.shields.io/badge/Automation-F5428D?style=for-the-badge&logo=robotframework&logoColor=white" alt="Automation"/>
   <img src="https://img.shields.io/badge/Desktop_Apps-5E5C64?style=for-the-badge&logo=gnome&logoColor=white" alt="Desktop Apps"/>
-  <img src="https://img.shields.io/badge/APIs_&_Microservices-6B21A8?style=for-the-badge&logo=serverless&logoColor=white" alt="APIs & Microservices"/>
+  <img src="https://img.shields.io/badge/APIs-6B21A8?style=for-the-badge&logo=serverless&logoColor=white" alt="APIs"/>
   <img src="https://img.shields.io/badge/Machine_Learning-00A693?style=for-the-badge&logo=openai&logoColor=white" alt="Machine Learning"/>
 </p>
 
@@ -21,11 +21,11 @@ Click a project name to jump to its section.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## 🚀 File Organization <img src="https://img.shields.io/badge/Automation-F5428D?style=for-the-badge&logo=robotframework&logoColor=white" alt="Automation"/>
-### Description
+
+### *Description*
 This project is a Python automation script that organizes files in a specified folder (default: Downloads) into subfolders based on their extensions.
 It automatically creates the necessary folders, handles duplicate filenames by adding a counter, and logs all actions in a .txt file..
 
-### Technologies Used
 <p>
 <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/> 
 <img src="https://img.shields.io/badge/Pathlib-222222?style=for-the-badge&logo=python&logoColor=white" alt="Pathlib"/>
@@ -33,7 +33,7 @@ It automatically creates the necessary folders, handles duplicate filenames by a
 <img src="https://img.shields.io/badge/Unittest-6B21A8?style=for-the-badge&logo=python&logoColor=white" alt="Unittest"/>
 </p>
 
-### Project Structure
+### *Project Structure*
 ```📂 project_root
  ├── organizer.py        # Main script
  ├── organizer_log.txt   # Log file generated automatically
@@ -42,14 +42,14 @@ It automatically creates the necessary folders, handles duplicate filenames by a
  ├── README.md           # Project documentation
 ```
 
-### Features
+### *Features*
 - Organizes files by extension into separate folders.
 - Creates missing folders automatically.
 - Avoids overwriting files with the same name by renaming them.
 - Generates a detailed log of all actions.
 - Includes automated unit tests.
 
-### ▶️ How to Run
+### *How to Run*
 
 ```bash
 # Default: organizes the Downloads folder
@@ -94,7 +94,7 @@ You can schedule the file_organizer.py script to run automatically once a day us
 
 ✅ Done! Your folder will be organized automatically every day.
 
-### Example
+### *Example*
 Before
 ``` 
 Downloads/
@@ -116,16 +116,33 @@ Downloads/
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-## GitHub Manager
+## 🚀 GitHub Manager <img src="https://img.shields.io/badge/Desktop_Apps-5E5C64?style=for-the-badge&logo=gnome&logoColor=white" alt="Desktop Apps"/> <img src="https://img.shields.io/badge/APIs-6B21A8?style=for-the-badge&logo=serverless&logoColor=white" alt="APIs"/>
 
+### *Description*
 This project is a Python desktop application built with Tkinter that allows users to manage their GitHub relationships (followers and following) through the GitHub REST API.
 It lets you:
 - View which followers you are not following back.
 - View which users you follow that do not follow you back.
 - Follow or unfollow users in bulk with a single click.
 - Track the process with a live status bar.
-- 
-### Features
+
+<p>
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/> 
+  <img src="https://img.shields.io/badge/Tkinter-FFDD00?style=for-the-badge&logo=python&logoColor=black" alt="Tkinter"/> 
+  <img src="https://img.shields.io/badge/Requests-404040?style=for-the-badge&logo=python&logoColor=white" alt="Requests"/> 
+  <img src="https://img.shields.io/badge/GitHub_API-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub API"/>
+</p>
+
+### *Project Structure*
+```
+📂 project_root
+ ├── api_connection.py   # Functions to interact with GitHub API (followers/following/follow/unfollow)
+ ├── github_manager.py   # Tkinter UI and application logic
+ ├── app.py              # Application entry point
+ ├── README.md           # Project documentation
+```
+   
+### *Features*
 - Connects to the GitHub API with a Personal Access Token.
 - Retrieves complete followers and following lists with pagination.
 - Compares relationships to identify:
@@ -135,15 +152,8 @@ It lets you:
 - Clean and responsive Tkinter GUI.
 - Status updates for each action.
 
-### Technologies Used
-<p>
-  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/> 
-  <img src="https://img.shields.io/badge/Tkinter-FFDD00?style=for-the-badge&logo=python&logoColor=black" alt="Tkinter"/> 
-  <img src="https://img.shields.io/badge/Requests-404040?style=for-the-badge&logo=python&logoColor=white" alt="Requests"/> 
-  <img src="https://img.shields.io/badge/GitHub_API-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub API"/>
-</p>
+### *How to Use*
 
-### How to Use
 1. Clone este repositório
    ```
    git clone https://github.com/AdrianoR85/Python-Automation-Projects.git
@@ -159,10 +169,22 @@ Dependendo do projeto, pode variar:
    ```
      python app.py
    ```
-### Image
+### *Image*
+<p align="center">
+  <img src="images/github_manager.png" alt="Screenshot do Programa" width="400"/>
+</p>
 
----
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## 🚀 Employee Management
 
+### *Description*
+
+### *Project Structure*
+
+### *Features*
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## 📬 Contact
 
 Feel free to reach out if you have ideas or questions — or just want to geek out about Python!
