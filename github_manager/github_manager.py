@@ -7,7 +7,7 @@ class GitHubManagerApp:
   def __init__(self, master):
     self.master = master
     master.title("Gerenciador de Seguidores/Seguindo do GitHub")
-    master.geometry("580x550")
+    master.geometry("580x565")
     
     # Esquema de cores claro
     self.colors = {
