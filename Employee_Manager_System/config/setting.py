@@ -4,9 +4,9 @@ Global application settings
 
 # Window settings
 WINDOW_CONFIG = {
-    'width': 1000,  # Increased for better proportion
-    'height': 600,  # Increased for better proportion
-    'title': 'Employee Management System - Login',
+    'width': 930,  # Increased for better proportion
+    'height': 478,  # Increased for better proportion
+    'title': 'Employee Management System',
     'resizable': False
 }
 
@@ -18,14 +18,15 @@ COLORS = {
     'accent': '#10B981',        # Green for success
     
     # Text colors
-    'text_primary': '#1E293B',   # Dark gray
+    'text_primary': 'dark blue',   # Dark gray
     'text_secondary': '#64748B', # Medium gray
     'text_light': '#FFFFFF',     # White
     
     # Background colors
+
     'bg_primary': '#FFFFFF',     # White
     'bg_secondary': '#F1F5F9',   # Light gray
-    'bg_card': '#FFFFFF',        # White for cards
+
     
     # Border colors
     'border_light': '#E2E8F0',   # Light border
@@ -38,7 +39,7 @@ COLORS = {
 }
 
 FONTS = {
-    'title': ('Segoe UI', 28, 'bold'),      # Larger title
+    'title': ('Segoe UI', 20, 'bold'),      # Larger title
     'subtitle': ('Segoe UI', 16, 'normal'),  # Subtitle
     'button': ('Segoe UI', 14, 'bold'),      # Buttons
     'entry': ('Segoe UI', 13, 'normal'),     # Input fields
@@ -47,11 +48,10 @@ FONTS = {
 }
 
 COMPONENT_CONFIG = {
-    'entry_width': 280,
+    'entry_width': 260,
     'entry_height': 45,
-    'button_width': 280,
+    'button_width': 260,
     'button_height': 45,
-    'card_padding': 40,
     'border_radius': 12
 }
 

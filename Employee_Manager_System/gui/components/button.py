@@ -11,12 +11,13 @@ class Button(CTkButton):
     super().__init__(
       master,
       text=text,
+      bg_color="#FFFFFF",
       command=self._handle_click,
       width=COMPONENT_CONFIG['button_width'],
       height=COMPONENT_CONFIG['button_height'],
       font=FONTS['button'],
       corner_radius=COMPONENT_CONFIG['border_radius'],
-      curso="hand2",
+      cursor="hand2",
       **style_config,
       **kwargs
     )
@@ -31,8 +32,8 @@ class Button(CTkButton):
       },
       "secondary": {
         "fg_color": "transparent",
-        "hover_color":COLORS['bg_secondary'],
-        "text_color": COLORS['primary'],
+        "hover_color":COLORS['primary'],
+        "text_color": COLORS['text_light'],
         "border_width": 2,
         "border_color": COLORS['primary']
       },

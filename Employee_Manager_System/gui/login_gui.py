@@ -3,6 +3,8 @@ from customtkinter import *
 from tkinter import messagebox
 from PIL import Image
 from config.setting import WINDOW_CONFIG, COLORS, FONTS, ASSETS, TEMP_CREDENTIALS
+from gui.components.button import Button
+from gui.components.entry import EntryField
 
 
 class LoginGUI(CTk):
@@ -59,53 +61,45 @@ class LoginGUI(CTk):
     # Title
     self.title_label = CTkLabel(
       self,
-      text="Employee Management System",
+      text=WINDOW_CONFIG['title'],
       bg_color=COLORS['secondary'],
       font=FONTS['title'],
       text_color=COLORS['text_primary']
     )
-    self.title_label.place(x=30, y=100)
+    self.title_label.place(x=40, y=100)
 
     # Username Field
-    self.username_entry = CTkEntry(
+    self.username_field = EntryField(
       self,
-      width=200,
-      height=35,
       placeholder_text="Entry your username",
-      font=FONTS['entry']
     )
-    self.username_entry.place(x=60, y=150)
+    self.username_field.place(x=60, y=160)
 
     # Password Field
-    self.password_entry = CTkEntry(
+    self.password_field = EntryField(
       self,
-      width=200,
-      height=35,
       placeholder_text="Entry your password",
-      font=FONTS['entry'],
-      show="*",
+      show="*"
     )
-    self.password_entry.place(x=60, y=200)
+    self.password_field.place(x=60, y=220)
 
     # Button
-    self.login_button = CTkButton(
+    self.login_button = Button(
       self,
-      width=120,
-      height=35,
       text="Login",
-      font=FONTS['button'],
-      fg_color=COLORS['accent'],
-      cursor="hand2",
       command=self._handle_login
     )
-    self.login_button.place(x=100, y=250)
+    self.login_button.place(x=60, y=280)
+
 
     self.bind('<Return>', lambda event:self._handle_login())
+
+    self.username_field.focus()
   
 
   def _handle_login(self):
-    username = self.username_entry.get().strip()
-    password = self.password_entry.get().strip()
+    username = self.username_field.get().strip()
+    password = self.password_field.get().strip()
 
     if not self._validate_inputs(username, password):
       return
@@ -139,6 +133,6 @@ class LoginGUI(CTk):
 
   def _on_login_failure(self):
     messagebox.showerror("Error", "Invalid credentials.")
-    self.password_entry.delete(0,'end') # Clean the password
-    self.username_entry.delete(0, 'end') # clean the username
-    self.username_entry.focus() # Focus on username field
+    self.password_field.clear() # Clean the password
+    self.username_field.clear() # clean the username
+    self.username_field.focus() # Focus on username field

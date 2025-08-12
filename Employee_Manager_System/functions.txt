@@ -1,4 +1,0 @@
-geometry()
-resizable()
-title()
-mainloop()

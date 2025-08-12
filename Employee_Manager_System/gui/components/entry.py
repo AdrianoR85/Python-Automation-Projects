@@ -2,11 +2,11 @@ from customtkinter import CTkEntry, CTkLabel, CTkFrame
 from config.setting import COLORS, FONTS, COMPONENT_CONFIG
 
 
-class Entry(CTkFrame):
+class EntryField(CTkFrame):
   def __init__(self, master, placeholder_text="", show="", label_text="", **kwargs):
-    super().__init__(master, fg_color="transparent", **kwargs)
+    super().__init__(master, fg_color="#ffffff", **kwargs)
 
-    self.placehold_text = placeholder_text
+    self.placeholder_text = placeholder_text
     self.show = show
     self.label_text = label_text
 
@@ -20,7 +20,8 @@ class Entry(CTkFrame):
         self, 
         text=self.label_text,
         font=FONTS['label'],
-        text_color=COLORS['text_secondary']
+        text_color=COLORS['text_secondary'],
+        bg_color=COLORS['bg_primary']
       )
       self.label.pack(anchor='w', pady=(0,8))
     
@@ -33,7 +34,7 @@ class Entry(CTkFrame):
       show=self.show,
       border_width=2,
       border_color=COLORS['border_light'],
-      fg_color=COLORS['bg_cards'],
+      fg_color=COLORS['bg_primary'],
       text_color=COLORS['text_primary'],
       placeholder_text_color=COLORS['text_secondary'],
       corner_radius=COMPONENT_CONFIG['border_radius']
@@ -57,11 +58,6 @@ class Entry(CTkFrame):
     return self.entry.get()
   
   
-  def set(self, value):
-    self.entry.delete(0, "end")
-    self.entry.insert(0, value)
-  
-
   def clear(self):
     self.entry.delete(0, "end")
 
