@@ -100,6 +100,8 @@ class LoginGUI(CTk):
   
 
   def _authenticate_user(self, username, password):
+    print(username)
+    print(password)
     """User authentication (temporary implementation)"""
     return (username == TEMP_CREDENTIALS['username'] and
             password == TEMP_CREDENTIALS['password'])
