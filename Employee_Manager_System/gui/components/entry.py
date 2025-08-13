@@ -45,7 +45,6 @@ class EntryField(CTkFrame):
     self.entry.bind("<FocusIn>", self._on_focus_in)
     self.entry.bind("<FocusOut>", self._on_focus_out)
   
-  
   def _on_focus_in(self, event):
     self.entry.configure(border_color=COLORS['border_focus'])
   
