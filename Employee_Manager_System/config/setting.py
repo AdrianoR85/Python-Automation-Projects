@@ -3,7 +3,7 @@ Global application settings
 """
 
 # Window settings
-WINDOW_CONFIG = {
+LOGIN_WINDOW_CONFIG = {
     'width': 930,  # Increased for better proportion
     'height': 478,  # Increased for better proportion
     'title': 'Employee Management System',
@@ -66,3 +66,4 @@ TEMP_CREDENTIALS = {
     'username': 'admin',
     'password': 'admin123'
 }
+

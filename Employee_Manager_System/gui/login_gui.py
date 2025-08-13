@@ -1,67 +1,37 @@
-import os
 from customtkinter import *
 from tkinter import messagebox
-from PIL import Image
-from config.setting import WINDOW_CONFIG, COLORS, FONTS, ASSETS, TEMP_CREDENTIALS
+from config.setting import LOGIN_WINDOW_CONFIG, COLORS, FONTS, ASSETS, TEMP_CREDENTIALS
+from util.window_utils import create_background, center_window
 from gui.components.button import Button
 from gui.components.entry import EntryField
-
 
 class LoginGUI(CTk):
   def __init__(self):
     super().__init__()
+    
+    self.login_attempts = 0
+    self.max_attempts = 3
 
     # Window Setting
     self._setup_window()
-
     # Component initialization
-    self._create_widgets()
+    self._create_login_form()
 
 
   def _setup_window(self):
-    self.geometry(f"{WINDOW_CONFIG['width']}x{WINDOW_CONFIG['height']}")
-    self.resizable(WINDOW_CONFIG['resizable'], WINDOW_CONFIG['resizable'])
-    self.title(WINDOW_CONFIG['title'])
+    self.geometry(f"{LOGIN_WINDOW_CONFIG['width']}x{LOGIN_WINDOW_CONFIG['height']}")
+    self.resizable(LOGIN_WINDOW_CONFIG['resizable'], LOGIN_WINDOW_CONFIG['resizable'])
+    self.title(LOGIN_WINDOW_CONFIG['title'])
 
-    self._center_window()
+    center_window(self)
+    create_background(self, "cover_image")
   
-
-  def _center_window(self):
-    self.update_idletasks()
-    width = self.winfo_width()
-    height = self.winfo_height()
-    x = (self.winfo_screenwidth() // 2) - (width // 2)
-    y = (self.winfo_screenheight() // 2) - (height // 2)
-    self.geometry(f'{width}x{height}+{x}+{y}')
-
-
-  def _create_widgets(self):
-    self._create_background()
-    self._create_login_form()
   
-
-  def _create_background(self):
-    try:
-      if os.path.exists(ASSETS['cover_image']):
-        self.bg_image = CTkImage(
-          Image.open(ASSETS['cover_image']),
-          size=(WINDOW_CONFIG['width'], WINDOW_CONFIG['height'])
-        )
-        self.bg_label = CTkLabel(self, image=self.bg_image, text="")
-        self.bg_label.place(x=0, y=0)
-      else:
-        self.configure(fg_color=COLORS['secondary'])
-        print("Notice: The background image not found.")
-    except Exception as e:
-      print("Error to try the image")
-      self.configure(fg_color=COLORS['secondary'])
-  
-
   def _create_login_form(self):
     # Title
     self.title_label = CTkLabel(
       self,
-      text=WINDOW_CONFIG['title'],
+      text=LOGIN_WINDOW_CONFIG['title'],
       bg_color=COLORS['secondary'],
       font=FONTS['title'],
       text_color=COLORS['text_primary']
@@ -91,13 +61,23 @@ class LoginGUI(CTk):
     )
     self.login_button.place(x=60, y=280)
 
+    # Attempts 
+    self.attempts_label = CTkLabel(
+      self,
+      text="",
+      bg_color=COLORS['bg_primary'],
+      font=FONTS['small'],
+      text_color=COLORS['error']
+    )
+    self.attempts_label.place(x=130, y=330)
 
     self.bind('<Return>', lambda event:self._handle_login())
-
-    self.username_field.focus()
   
-
   def _handle_login(self):
+    if self.login_attempts >= 3:
+      messagebox.showerror("Blocked", "Many attempts failed. Restart the application.")
+      return
+
     username = self.username_field.get().strip()
     password = self.password_field.get().strip()
 
@@ -127,12 +107,28 @@ class LoginGUI(CTk):
   
   def _on_login_success(self):
     messagebox.showinfo("Success", "Login is successful.")
+    self.login_attempts = 0
+    self.attempts_label.configure(text="")
     # Here I will call the next screen
     self.destroy()
 
 
   def _on_login_failure(self):
-    messagebox.showerror("Error", "Invalid credentials.")
-    self.password_field.clear() # Clean the password
-    self.username_field.clear() # clean the username
-    self.username_field.focus() # Focus on username field
+    """Actions to perform when login fails"""
+    self.login_attempts += 1
+    remaining = self.max_attempts - self.login_attempts
+    
+    if remaining > 0:
+        messagebox.showerror("Login Failed", f"Invalid username or password. {remaining} attempt(s) left.")
+        self.attempts_label.configure(text=f"Attempts left: {remaining}")
+    else:
+        messagebox.showerror("Account Locked", "Too many failed login attempts. Please restart the application.")
+        self.attempts_label.configure(text="LOCKED - Please restart the application")
+        self.attempts_label.place(x=90, y=330)
+        self.login_button.configure(state="disabled")
+        
+    self.username_field.clear()
+    self.password_field.clear()
+    self.username_field.focus()
+
+
