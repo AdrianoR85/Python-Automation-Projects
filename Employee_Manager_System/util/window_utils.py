@@ -26,3 +26,8 @@ def center_window(self):
     x = (self.winfo_screenwidth() // 2) - (width // 2)
     y = (self.winfo_screenheight() // 2) - (height // 2)
     self.geometry(f'{width}x{height}+{x}+{y}')
+
+def setup_window(self, window):
+    self.geometry(f"{window['width']}x{window['height']}")
+    self.resizable(window['resizable'], window['resizable'])
+    self.title(window['title'])

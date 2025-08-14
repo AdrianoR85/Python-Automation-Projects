@@ -10,6 +10,13 @@ LOGIN_WINDOW_CONFIG = {
     'resizable': False
 }
 
+WINDOW_EMS = {
+    'width': 930,  # Increased for better proportion
+    'height': 580,  # Increased for better proportion
+    'title': 'Employee Management System',
+    'resizable': False
+}
+
 COLORS = {
     # Main colors
     'primary': '#3B82F6',       # Modern blue

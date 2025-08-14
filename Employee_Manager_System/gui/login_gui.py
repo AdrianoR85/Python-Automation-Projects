@@ -1,7 +1,7 @@
 from customtkinter import *
 from tkinter import messagebox
 from config.setting import LOGIN_WINDOW_CONFIG, COLORS, FONTS, ASSETS, TEMP_CREDENTIALS
-from util.window_utils import create_background, center_window
+from util.window_utils import create_background, center_window, setup_window
 from gui.components.button import Button
 from gui.components.entry import EntryField
 
@@ -12,19 +12,13 @@ class LoginGUI(CTk):
     self.login_attempts = 0
     self.max_attempts = 3
 
-    # Window Setting
-    self._setup_window()
-    # Component initialization
-    self._create_login_form()
-
-
-  def _setup_window(self):
-    self.geometry(f"{LOGIN_WINDOW_CONFIG['width']}x{LOGIN_WINDOW_CONFIG['height']}")
-    self.resizable(LOGIN_WINDOW_CONFIG['resizable'], LOGIN_WINDOW_CONFIG['resizable'])
-    self.title(LOGIN_WINDOW_CONFIG['title'])
-
+    setup_window(self, LOGIN_WINDOW_CONFIG)
     center_window(self)
     create_background(self, "cover_image")
+
+    # Window Setting
+    # Component initialization
+    self._create_login_form()
   
   
   def _create_login_form(self):
@@ -87,6 +81,7 @@ class LoginGUI(CTk):
     # Temporary credential check
     if self._authenticate_user(username, password):
       self._on_login_success()
+      import gui.ems_gui
     else:
       self._on_login_failure()
 
