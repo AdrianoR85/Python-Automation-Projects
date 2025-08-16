@@ -1,9 +1,8 @@
 from customtkinter import *
 from tkinter import messagebox
-from config.setting import LOGIN_WINDOW_CONFIG, COLORS, FONTS, ASSETS, TEMP_CREDENTIALS
-from util.window_utils import create_background, center_window, setup_window
-from gui.components.button import Button
-from gui.components.entry import EntryField
+from config.setting import LOGIN_WINDOW_CONFIG, COLORS, FONTS, TEMP_CREDENTIALS, COMPONENT_CONFIG
+from util.window_utils import get_image, center_window, setup_window
+
 
 class LoginGUI(CTk):
   def __init__(self):
@@ -12,15 +11,30 @@ class LoginGUI(CTk):
     self.login_attempts = 0
     self.max_attempts = 3
 
-    setup_window(self, LOGIN_WINDOW_CONFIG)
-    center_window(self)
-    create_background(self, "cover_image")
-
     # Window Setting
+    self._main_window()
+    
     # Component initialization
     self._create_login_form()
+    self._setup_binding()  
+
+  def _main_window(self):
+    setup_window(self, LOGIN_WINDOW_CONFIG)
+    center_window(self)
+    
+    self._create_backgroud()
   
-  
+
+  def _create_backgroud(self):
+    if get_image('cover_image'):
+      image = get_image('cover_image')
+      banner = CTkImage(image, size=(LOGIN_WINDOW_CONFIG['width'], LOGIN_WINDOW_CONFIG['height']))
+      banner_label = CTkLabel(self, image=banner, text="")
+      banner_label.grid(row=0, column=0, columnspan=2)
+    else:
+      self.configure(fg_color=COLORS['secondary'])
+
+
   def _create_login_form(self):
     # Title
     self.title_label = CTkLabel(
@@ -28,31 +42,34 @@ class LoginGUI(CTk):
       text=LOGIN_WINDOW_CONFIG['title'],
       bg_color=COLORS['secondary'],
       font=FONTS['title'],
-      text_color=COLORS['text_primary']
-    )
+      text_color=COLORS['text_primary'] )
     self.title_label.place(x=40, y=100)
 
     # Username Field
-    self.username_field = EntryField(
+    self.username_entry = CTkEntry(
       self,
-      placeholder_text="Entry your username",
-    )
-    self.username_field.place(x=60, y=160)
+      width=COMPONENT_CONFIG['entry_width'],
+      height=COMPONENT_CONFIG['entry_height'],
+      placeholder_text="Entry your username" )
+    self.username_entry.place(x=60, y=160)
 
     # Password Field
-    self.password_field = EntryField(
+    self.password_entry = CTkEntry(
       self,
+      width=COMPONENT_CONFIG['entry_width'],
+      height=COMPONENT_CONFIG['entry_height'],
       placeholder_text="Entry your password",
-      show="*"
-    )
-    self.password_field.place(x=60, y=220)
+      show="*" )
+    self.password_entry.place(x=60, y=220)
 
     # Button
-    self.login_button = Button(
+    self.login_button = CTkButton(
       self,
+      width=COMPONENT_CONFIG['button_width'],
+      height=COMPONENT_CONFIG['button_height'],
       text="Login",
-      command=self._handle_login
-    )
+      font=FONTS['button'],
+      command=self._handle_login)
     self.login_button.place(x=60, y=280)
 
     # Attempts 
@@ -61,19 +78,19 @@ class LoginGUI(CTk):
       text="",
       bg_color=COLORS['bg_primary'],
       font=FONTS['small'],
-      text_color=COLORS['error']
-    )
+      text_color=COLORS['error'])
     self.attempts_label.place(x=130, y=330)
 
     self.bind('<Return>', lambda event:self._handle_login())
+    self.username_entry.focus()
   
   def _handle_login(self):
     if self.login_attempts >= 3:
       messagebox.showerror("Blocked", "Many attempts failed. Restart the application.")
       return
 
-    username = self.username_field.get().strip()
-    password = self.password_field.get().strip()
+    username = self.username_entry.get().strip()
+    password = self.password_entry.get().strip()
 
     if not self._validate_inputs(username, password):
       return
@@ -81,7 +98,10 @@ class LoginGUI(CTk):
     # Temporary credential check
     if self._authenticate_user(username, password):
       self._on_login_success()
-      import gui.ems_gui
+      
+      from gui.ems_gui import ManagementSystemGUI
+      ems = ManagementSystemGUI()
+
     else:
       self._on_login_failure()
 
@@ -95,8 +115,6 @@ class LoginGUI(CTk):
   
 
   def _authenticate_user(self, username, password):
-    print(username)
-    print(password)
     """User authentication (temporary implementation)"""
     return (username == TEMP_CREDENTIALS['username'] and
             password == TEMP_CREDENTIALS['password'])
@@ -124,8 +142,19 @@ class LoginGUI(CTk):
         self.attempts_label.place(x=90, y=330)
         self.login_button.configure(state="disabled")
         
-    self.username_field.clear()
-    self.password_field.clear()
-    self.username_field.focus()
+    self.username_entry.delete(0, 'end')
+    self.password_entry.delete(0, 'end')
+    self.username_entry.focus()
 
+
+  def _setup_binding(self):
+    self.username_entry.bind("<FocusIn>", 
+        lambda e: self.username_entry.configure(border_color=COLORS['border_focus']))
+    self.username_entry.bind("<FocusOut>", 
+        lambda e: self.username_entry.configure(border_color=COLORS['border_light']))
+    
+    self.password_entry.bind("<FocusIn>", 
+        lambda e: self.password_entry.configure(border_color=COLORS['border_focus']))
+    self.password_entry.bind("<FocusOut>", 
+        lambda e: self.password_entry.configure(border_color=COLORS['border_light']))
 

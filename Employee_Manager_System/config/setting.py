@@ -14,7 +14,8 @@ WINDOW_EMS = {
     'width': 930,  # Increased for better proportion
     'height': 580,  # Increased for better proportion
     'title': 'Employee Management System',
-    'resizable': False
+    'resizable': False,
+    'banner_height': 158
 }
 
 COLORS = {
@@ -25,18 +26,18 @@ COLORS = {
     'accent': '#10B981',        # Green for success
     
     # Text colors
-    'text_primary': 'dark blue',   # Dark gray
+    'text_primary': '#161C30',   # Dark blue
     'text_secondary': '#64748B', # Medium gray
     'text_light': '#FFFFFF',     # White
     
     # Background colors
 
     'bg_primary': '#FFFFFF',     # White
-    'bg_secondary': '#F1F5F9',   # Light gray
+    'bg_secondary': '#161C30',   # Dark blue
 
     
     # Border colors
-    'border_light': '#E2E8F0',   # Light border
+    'border_light': "#BABCBE",   # Light border
     'border_focus': '#3B82F6',   # Focus border
     
     # States
@@ -50,7 +51,7 @@ FONTS = {
     'subtitle': ('Segoe UI', 16, 'normal'),  # Subtitle
     'button': ('Segoe UI', 14, 'bold'),      # Buttons
     'entry': ('Segoe UI', 13, 'normal'),     # Input fields
-    'label': ('Segoe UI', 12, 'normal'),     # Labels
+    'label': ('Segoe UI', 14, 'bold'),     # Labels
     'small': ('Segoe UI', 10, 'normal')      # Small text
 }
 
@@ -59,13 +60,14 @@ COMPONENT_CONFIG = {
     'entry_height': 45,
     'button_width': 260,
     'button_height': 45,
-    'border_radius': 12
+    'small_entry_width': 180,
+    'small_entry_height': 30
 }
 
 # Asset paths
 ASSETS = {
     'cover_image': 'assets/cover.png',
-    'logo': 'assets/logo.png'
+    'banner': 'assets/banner.png'
 }
 
 # Temporary credentials (will be removed when backend is implemented)
