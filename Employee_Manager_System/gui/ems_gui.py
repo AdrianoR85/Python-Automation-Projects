@@ -1,7 +1,8 @@
 from customtkinter import *
 from util.window_utils import center_window, get_image, setup_window
 from config.setting import WINDOW_EMS, COLORS, COMPONENT_CONFIG, FONTS
-from data.role import role_options, gender_options
+from data.role import role_options, gender_options, search_options
+from tkinter import ttk
 
 class ManagementSystemGUI(CTk):
   def __init__(self):
@@ -11,10 +12,12 @@ class ManagementSystemGUI(CTk):
 
     self._widgets()
   
+
   def _main_window(self):
     setup_window(self, WINDOW_EMS, COLORS['bg_secondary'])
     center_window(self)
     self._create_banner()
+
 
   def _create_banner(self):
     if get_image('banner'):
@@ -75,7 +78,7 @@ class ManagementSystemGUI(CTk):
       font=FONTS['label'],
       text_color=COLORS['text_light']
     )
-    self.phone_label.grid(row=2, column=0, padx=20, pady=15, stick='w')
+    self.phone_label.grid(row=2, column=0, padx=15, pady=15, stick='w')
 
     self.phone_entry = CTkEntry(
       self.left_frame, 
@@ -92,7 +95,7 @@ class ManagementSystemGUI(CTk):
       font=FONTS['label'],
       text_color=COLORS['text_light']
     )
-    self.role_label.grid(row=3, column=0, padx=20, pady=15, stick='w')
+    self.role_label.grid(row=3, column=0, padx=15, pady=15, stick='w')
 
     self.role_box = CTkComboBox(
       self.left_frame, 
@@ -112,7 +115,7 @@ class ManagementSystemGUI(CTk):
       font=FONTS['label'],
       text_color=COLORS['text_light']
     )
-    self.gender_label.grid(row=4, column=0, padx=20, pady=15, stick='w')
+    self.gender_label.grid(row=4, column=0, padx=15, pady=15, stick='w')
 
     self.gender_box = CTkComboBox(
       self.left_frame, 
@@ -132,7 +135,7 @@ class ManagementSystemGUI(CTk):
       font=FONTS['label'],
       text_color=COLORS['text_light']
     )
-    self.salary_label.grid(row=5, column=0, padx=20, pady=15, stick='w')
+    self.salary_label.grid(row=5, column=0, padx=15, pady=15, stick='w')
 
     self.salary_entry = CTkEntry(
       self.left_frame, 
@@ -146,4 +149,38 @@ class ManagementSystemGUI(CTk):
   def _right_frame(self):
     self.right_frame = CTkFrame(self)
     self.right_frame.grid(row=1, column=1)
+
+    self.search_box = CTkComboBox(self.right_frame, width=150, values=search_options,state="readonly")
+    self.search_box.grid(row=0, column=0)
+    self.search_box.set(search_options[0])
+    self.search_box.set("Search By")
+
+    self.name_entry = CTkEntry(self.right_frame, width=200)
+    self.name_entry.grid(row=0, column=1)
+
+    self.search_button = CTkButton(self.right_frame, text="Search", width=120)
+    self.search_button.grid(row=0, column=2, pady=5)
+
+    self.showall_button = CTkButton(self.right_frame, text="Show All", width=120)
+    self.showall_button.grid(row=0, column=3, pady=5)
+
+    self.tree = ttk.Treeview(self.right_frame, height=13)
+    self.tree.grid(row=1, column=0, columnspan=4)
+    self.tree['columns'] = search_options
+
+    self.tree.heading(search_options[0], text=search_options[0])
+    self.tree.heading(search_options[1], text=search_options[1])
+    self.tree.heading(search_options[2], text=search_options[2])
+    self.tree.heading(search_options[3], text=search_options[3])
+    self.tree.heading(search_options[4], text=search_options[4])
+    self.tree.heading(search_options[5], text=search_options[5])
     
+
+    self.tree.config(show='headings')
+
+    self.tree.column(search_options[0], width=80)
+    self.tree.column(search_options[1], width=160)
+    self.tree.column(search_options[2], width=130)
+    self.tree.column(search_options[3], width=160)
+    self.tree.column(search_options[4], width=90)
+    self.tree.column(search_options[5], width=90)

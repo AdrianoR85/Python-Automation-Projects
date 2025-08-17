@@ -11,3 +11,5 @@ role_options = [
 ]
 
 gender_options = ['Male', 'Female']
+
+search_options = ('Id', 'Name', 'Phone', 'Role', 'Gender', 'Salary')

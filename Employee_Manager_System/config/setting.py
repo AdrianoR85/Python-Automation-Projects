@@ -4,17 +4,17 @@ Global application settings
 
 # Window settings
 LOGIN_WINDOW_CONFIG = {
-    'width': 930,  # Increased for better proportion
-    'height': 478,  # Increased for better proportion
+    'width': 930,  
+    'height': 478,  
     'title': 'Employee Management System',
     'resizable': False
 }
 
 WINDOW_EMS = {
-    'width': 930,  # Increased for better proportion
-    'height': 580,  # Increased for better proportion
+    'width': 960,  
+    'height': 580,  
     'title': 'Employee Management System',
-    'resizable': False,
+    'resizable': False, 
     'banner_height': 158
 }
 
@@ -60,7 +60,7 @@ COMPONENT_CONFIG = {
     'entry_height': 45,
     'button_width': 260,
     'button_height': 45,
-    'small_entry_width': 180,
+    'small_entry_width': 140,
     'small_entry_height': 30
 }
 
