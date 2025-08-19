@@ -32,6 +32,7 @@ class ManagementSystemGUI(CTk):
   def _widgets(self):
     self._left_frame()
     self._right_frame()
+    self._button_frame()
 
 
   def _left_frame(self):
@@ -184,3 +185,47 @@ class ManagementSystemGUI(CTk):
     self.tree.column(search_options[3], width=160)
     self.tree.column(search_options[4], width=90)
     self.tree.column(search_options[5], width=90)
+
+  def _button_frame(self):
+    self.btn_frame = CTkFrame(self, fg_color=COLORS['bg_secondary'])
+    self.btn_frame.grid(row=2, column=0, columnspan=2 )
+
+    self.new_button = CTkButton(
+      self.btn_frame, 
+      text="New Employee", 
+      font=FONTS['button'], 
+      width=160,
+      corner_radius=15 )
+    self.new_button.grid(row=0, column=0, padx=10, pady=20)
+
+    self.add_button = CTkButton(
+      self.btn_frame, 
+      text="Add Employee", 
+      font=FONTS['button'], 
+      width=160,
+      corner_radius=15 )
+    self.add_button.grid(row=0, column=1, padx=10, pady=20)
+
+    self.update_button = CTkButton(
+      self.btn_frame, 
+      text="Update Employee", 
+      font=FONTS['button'], 
+      width=160,
+      corner_radius=15 )
+    self.update_button.grid(row=0, column=2, padx=10, pady=20)
+
+    self.delete_button = CTkButton(
+      self.btn_frame, 
+      text="Delete Employee", 
+      font=FONTS['button'], 
+      width=160,
+      corner_radius=15 )
+    self.delete_button.grid(row=0, column=3, padx=10, pady=20)
+
+    self.delete_all_button = CTkButton(
+      self.btn_frame, 
+      text="Delete All", 
+      font=FONTS['button'], 
+      width=160,
+      corner_radius=15 )
+    self.delete_all_button.grid(row=0, column=4, padx=10, pady=20)

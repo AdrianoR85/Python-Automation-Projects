@@ -11,7 +11,7 @@ LOGIN_WINDOW_CONFIG = {
 }
 
 WINDOW_EMS = {
-    'width': 960,  
+    'width': 986,  
     'height': 580,  
     'title': 'Employee Management System',
     'resizable': False, 
@@ -58,8 +58,14 @@ FONTS = {
 COMPONENT_CONFIG = {
     'entry_width': 260,
     'entry_height': 45,
-    'button_width': 260,
-    'button_height': 45,
+
+    'btn_width': 160,
+
+    'btn_search_with': 120,
+
+    'btn_login_width': 260,
+    'btn_login_height': 45,
+
     'small_entry_width': 140,
     'small_entry_height': 30
 }

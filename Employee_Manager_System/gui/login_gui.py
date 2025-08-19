@@ -65,8 +65,8 @@ class LoginGUI(CTk):
     # Button
     self.login_button = CTkButton(
       self,
-      width=COMPONENT_CONFIG['button_width'],
-      height=COMPONENT_CONFIG['button_height'],
+      width=COMPONENT_CONFIG['btn_login_width'],
+      height=COMPONENT_CONFIG['btn_login_height'],
       text="Login",
       font=FONTS['button'],
       command=self._handle_login)
