@@ -186,6 +186,7 @@ class ManagementSystemGUI(CTk):
     self.tree.column(search_options[4], width=90)
     self.tree.column(search_options[5], width=90)
 
+
   def _button_frame(self):
     self.btn_frame = CTkFrame(self, fg_color=COLORS['bg_secondary'])
     self.btn_frame.grid(row=2, column=0, columnspan=2 )
@@ -229,3 +230,6 @@ class ManagementSystemGUI(CTk):
       width=160,
       corner_radius=15 )
     self.delete_all_button.grid(row=0, column=4, padx=10, pady=20)
+
+    self.scrollbar= ttk.Scrollbar(self.right_frame, orient=VERTICAL)
+    self.scrollbar.grid(row=1, column=4, sticky='ns')
