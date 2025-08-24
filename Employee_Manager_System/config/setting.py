@@ -47,12 +47,12 @@ COLORS = {
 }
 
 FONTS = {
-    'title': ('Segoe UI', 20, 'bold'),      # Larger title
+    'title': ('Segoe UI', 22, 'bold'),      # Larger title
     'subtitle': ('Segoe UI', 16, 'normal'),  # Subtitle
     'button': ('Segoe UI', 14, 'bold'),      # Buttons
     'entry': ('Segoe UI', 13, 'normal'),     # Input fields
     'label': ('Segoe UI', 14, 'bold'),     # Labels
-    'small': ('Segoe UI', 10, 'normal')      # Small text
+    'small': ('Segoe UI', 12, 'normal')      # Small text
 }
 
 COMPONENT_CONFIG = {

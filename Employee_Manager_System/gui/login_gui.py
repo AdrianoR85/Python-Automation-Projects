@@ -44,7 +44,7 @@ class LoginGUI(CTk):
       bg_color=COLORS['secondary'],
       font=FONTS['title'],
       text_color=COLORS['text_primary'] )
-    self.title_label.place(x=40, y=100)
+    self.title_label.place(x=45, y=100)
 
     # Username Field
     self.username_entry = CTkEntry(
@@ -52,7 +52,7 @@ class LoginGUI(CTk):
       width=COMPONENT_CONFIG['entry_width'],
       height=COMPONENT_CONFIG['entry_height'],
       placeholder_text="Entry your username" )
-    self.username_entry.place(x=60, y=160)
+    self.username_entry.place(x=80, y=160)
 
     # Password Field
     self.password_entry = CTkEntry(
@@ -61,7 +61,7 @@ class LoginGUI(CTk):
       height=COMPONENT_CONFIG['entry_height'],
       placeholder_text="Entry your password",
       show="*" )
-    self.password_entry.place(x=60, y=220)
+    self.password_entry.place(x=80, y=220)
 
     # Button
     self.login_button = CTkButton(
@@ -71,7 +71,7 @@ class LoginGUI(CTk):
       text="Login",
       font=FONTS['button'],
       command=self._handle_login)
-    self.login_button.place(x=60, y=280)
+    self.login_button.place(x=80, y=280)
 
     # Attempts 
     self.attempts_label = CTkLabel(
@@ -80,7 +80,7 @@ class LoginGUI(CTk):
       bg_color=COLORS['bg_primary'],
       font=FONTS['small'],
       text_color=COLORS['error'])
-    self.attempts_label.place(x=130, y=330)
+    self.attempts_label.place(x=160, y=330)
 
     self.bind('<Return>', lambda event:self._handle_login())
     self.username_entry.focus()
@@ -119,6 +119,7 @@ class LoginGUI(CTk):
     """User authentication (temporary implementation)"""
     return AuthUser.login(username, password)
   
+
   def _on_login_success(self):
     messagebox.showinfo("Success", "Login is successful.")
     self.login_attempts = 0
