@@ -1,7 +1,8 @@
-from customtkinter import *
+from customtkinter import * # type: ignore
 from tkinter import messagebox
-from config.setting import LOGIN_WINDOW_CONFIG, COLORS, FONTS, TEMP_CREDENTIALS, COMPONENT_CONFIG
+from config.setting import LOGIN_WINDOW_CONFIG, COLORS, FONTS, COMPONENT_CONFIG
 from util.window_utils import get_image, center_window, setup_window
+from services.auth_user import AuthUser
 
 
 class LoginGUI(CTk):
@@ -28,7 +29,7 @@ class LoginGUI(CTk):
   def _create_backgroud(self):
     if get_image('cover_image'):
       image = get_image('cover_image')
-      banner = CTkImage(image, size=(LOGIN_WINDOW_CONFIG['width'], LOGIN_WINDOW_CONFIG['height']))
+      banner = CTkImage(image, size=(LOGIN_WINDOW_CONFIG['width'], LOGIN_WINDOW_CONFIG['height'])) # type: ignore
       banner_label = CTkLabel(self, image=banner, text="")
       banner_label.grid(row=0, column=0, columnspan=2)
     else:
@@ -116,9 +117,7 @@ class LoginGUI(CTk):
 
   def _authenticate_user(self, username, password):
     """User authentication (temporary implementation)"""
-    return (username == TEMP_CREDENTIALS['username'] and
-            password == TEMP_CREDENTIALS['password'])
-  
+    return AuthUser.login(username, password)
   
   def _on_login_success(self):
     messagebox.showinfo("Success", "Login is successful.")
