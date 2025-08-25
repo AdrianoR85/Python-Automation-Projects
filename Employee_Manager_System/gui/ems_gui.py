@@ -23,7 +23,7 @@ class ManagementSystemGUI(CTk):
   def _create_banner(self):
     if get_image('banner'):
       image = get_image('banner')
-      banner = CTkImage(image, size=(WINDOW_EMS['width'], WINDOW_EMS['banner_height']))
+      banner = CTkImage(image, size=(WINDOW_EMS['width'], WINDOW_EMS['banner_height'])) # type: ignore
       banner_label = CTkLabel(self, image=banner, text="")
       banner_label.grid(row=0, column=0, columnspan=2)
     else:
@@ -152,7 +152,11 @@ class ManagementSystemGUI(CTk):
     self.right_frame = CTkFrame(self)
     self.right_frame.grid(row=1, column=1)
 
-    self.search_box = CTkComboBox(self.right_frame, width=150, values=search_options,state="readonly")
+    self.search_box = CTkComboBox(
+      self.right_frame, 
+      width=150, 
+      values=search_options, # type: ignore   
+      state="readonly") 
     self.search_box.grid(row=0, column=0)
     self.search_box.set(search_options[0])
     self.search_box.set("Search By")
