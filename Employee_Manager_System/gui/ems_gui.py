@@ -2,14 +2,15 @@ from customtkinter import *
 from util.window_utils import center_window, get_image, setup_window
 from config.setting import WINDOW_EMS, COLORS, COMPONENT_CONFIG, FONTS
 from data.role import role_options, gender_options, search_options
-from tkinter import ttk
+from data.models import Employee
+from tkinter import ttk, messagebox
+from services.employee_service import EmployeeService
 
 class ManagementSystemGUI(CTk):
-  def __init__(self):
+  def __init__(self, conn):
     super().__init__()
-
+    self.conn = conn
     self._main_window()
-
     self._widgets()
   
 
@@ -156,8 +157,8 @@ class ManagementSystemGUI(CTk):
     self.search_box.set(search_options[0])
     self.search_box.set("Search By")
 
-    self.name_entry = CTkEntry(self.right_frame, width=200)
-    self.name_entry.grid(row=0, column=1)
+    self.search_name_entry = CTkEntry(self.right_frame, width=200)
+    self.search_name_entry.grid(row=0, column=1)
 
     self.search_button = CTkButton(self.right_frame, text="Search", width=120)
     self.search_button.grid(row=0, column=2, pady=5)
@@ -196,7 +197,8 @@ class ManagementSystemGUI(CTk):
       text="New Employee", 
       font=FONTS['button'], 
       width=160,
-      corner_radius=15 )
+      corner_radius=15,
+      command=self._new_employee)
     self.new_button.grid(row=0, column=0, padx=10, pady=20)
 
     self.add_button = CTkButton(
@@ -233,3 +235,28 @@ class ManagementSystemGUI(CTk):
 
     self.scrollbar= ttk.Scrollbar(self.right_frame, orient=VERTICAL)
     self.scrollbar.grid(row=1, column=4, sticky='ns')
+
+
+  def _new_employee(self):
+    name = self.name_entry.get()
+    phone = self.phone_entry.get()
+    role = self.role_box.get()
+    gender = self.salary_entry.get()
+    salary = float(self.salary_entry.get() or 0)
+
+    if name == '' or phone == '' or salary == '':
+        messagebox.showerror("Error", "All fields are required.")
+    else: 
+      emp = Employee(
+        name=name,
+        phone=phone,
+        role=role,
+        gender=gender,
+        salary=salary
+      )
+      try:
+        new_id = EmployeeService.add_employee(emp, self.conn)
+        messagebox.showinfo("Succeful", f"New employee has been created with ID: {new_id}")
+        
+      except Exception as e:
+        messagebox.showerror("Erro", f"Failed to create a new employee: {e}")

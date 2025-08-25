@@ -96,12 +96,14 @@ class LoginGUI(CTk):
     if not self._validate_inputs(username, password):
       return
     
-    # Temporary credential check
-    if self._authenticate_user(username, password):
+    
+    conn = self._authenticate_user(username, password)
+    if conn:  
       self._on_login_success()
-      
       from gui.ems_gui import ManagementSystemGUI
-      ems = ManagementSystemGUI()
+      ems = ManagementSystemGUI(conn)
+      ems.mainloop()
+
 
     else:
       self._on_login_failure()
