@@ -220,14 +220,16 @@ The system has a graphical interface where users can login and do CRUD operation
 EMPLOYEE_MANAGER_SYSTEM/
 ├── assets/                 # Images and resources
 ├── config/                 # Configurations
+|   ├── options.py             
 │   ├── setting.py
 ├── data/                   # Models and data
-│   ├── role.py
+│   ├── database.py
 │   ├── models.py
 ├── gui/                    # Graphical interface
 │   ├── ems_gui.py          # Main system window
 │   └── login_gui.py        # Login window
 ├── services/               # Business logic
+|   ├── auth_user.py       
 │   └── employee_service.py
 ├── util/                   # Utility functions
 │   └── window_utils.py
