@@ -12,13 +12,14 @@ class ManagementSystemGUI(CTk):
     self.conn = conn
     self._main_window()
     self._widgets()
-  
 
+    self.protocol("WV_DELETE_WINDOW", self._on_close)
+  
+ # WINDOW CONFIGURATION
   def _main_window(self):
     setup_window(self, WINDOW_EMS, COLORS['bg_secondary'])
     center_window(self)
     self._create_banner()
-
 
   def _create_banner(self):
     if get_image('banner'):
@@ -28,14 +29,14 @@ class ManagementSystemGUI(CTk):
       banner_label.grid(row=0, column=0, columnspan=2)
     else:
       self.configure(fg_color=COLORS['secondary'])
-  
-  
+    
   def _widgets(self):
     self._left_frame()
     self._right_frame()
     self._button_frame()
 
 
+# FRAMES 
   def _left_frame(self):
     self.left_frame = CTkFrame(self, fg_color=COLORS['bg_secondary'])
     self.left_frame.grid(row=1, column=0)
@@ -147,7 +148,6 @@ class ManagementSystemGUI(CTk):
     )
     self.salary_entry.grid(row=5, column=1)
 
-
   def _right_frame(self):
     self.right_frame = CTkFrame(self)
     self.right_frame.grid(row=1, column=1)
@@ -190,7 +190,10 @@ class ManagementSystemGUI(CTk):
     self.tree.column(search_options[3], width=160)
     self.tree.column(search_options[4], width=90)
     self.tree.column(search_options[5], width=90)
+    
+    self._treeview_data()
 
+    self.tree.bind("<Double-1>", self._on_item_double_click)
 
   def _button_frame(self):
     self.btn_frame = CTkFrame(self, fg_color=COLORS['bg_secondary'])
@@ -202,7 +205,7 @@ class ManagementSystemGUI(CTk):
       font=FONTS['button'], 
       width=160,
       corner_radius=15,
-      command=self._new_employee)
+      command=self._clean)
     self.new_button.grid(row=0, column=0, padx=10, pady=20)
 
     self.add_button = CTkButton(
@@ -210,7 +213,8 @@ class ManagementSystemGUI(CTk):
       text="Add Employee", 
       font=FONTS['button'], 
       width=160,
-      corner_radius=15 )
+      corner_radius=15, 
+      command=self._add_employee)
     self.add_button.grid(row=0, column=1, padx=10, pady=20)
 
     self.update_button = CTkButton(
@@ -218,7 +222,8 @@ class ManagementSystemGUI(CTk):
       text="Update Employee", 
       font=FONTS['button'], 
       width=160,
-      corner_radius=15 )
+      corner_radius=15,
+      command=self._update_employee)
     self.update_button.grid(row=0, column=2, padx=10, pady=20)
 
     self.delete_button = CTkButton(
@@ -226,7 +231,8 @@ class ManagementSystemGUI(CTk):
       text="Delete Employee", 
       font=FONTS['button'], 
       width=160,
-      corner_radius=15 )
+      corner_radius=15,
+      command=self._delete_one_employee )
     self.delete_button.grid(row=0, column=3, padx=10, pady=20)
 
     self.delete_all_button = CTkButton(
@@ -234,33 +240,137 @@ class ManagementSystemGUI(CTk):
       text="Delete All", 
       font=FONTS['button'], 
       width=160,
-      corner_radius=15 )
+      corner_radius=15,
+      command=self._delete_all_employee )
     self.delete_all_button.grid(row=0, column=4, padx=10, pady=20)
 
     self.scrollbar= ttk.Scrollbar(self.right_frame, orient=VERTICAL)
     self.scrollbar.grid(row=1, column=4, sticky='ns')
 
 
-  def _new_employee(self):
-    name = self.name_entry.get()
-    phone = self.phone_entry.get()
-    role = self.role_box.get()
-    gender = self.salary_entry.get()
-    salary = float(self.salary_entry.get() or 0)
+# INSERT, UPDATE AND DELETE
+  def _add_employee(self):
+    employee_data = self._get_data()
 
-    if name == '' or phone == '' or salary == '':
-        messagebox.showerror("Error", "All fields are required.")
-    else: 
-      emp = Employee(
-        name=name,
-        phone=phone,
-        role=role,
-        gender=gender,
-        salary=salary
-      )
+    if employee_data:
       try:
-        new_id = EmployeeService.add_employee(emp, self.conn)
-        messagebox.showinfo("Succeful", f"New employee has been created with ID: {new_id}")
+        EmployeeService.add_employee(employee_data, self.conn)
+        messagebox.showinfo("Succeful", f"New employee has been created")
+        self._treeview_data()
         
       except Exception as e:
         messagebox.showerror("Erro", f"Failed to create a new employee: {e}")
+    else:  
+        messagebox.showerror("Error", "All fields are required.")
+    
+  def _update_employee(self):
+    employee = self._get_data(include_id=True)
+
+    if employee:
+      try:
+        EmployeeService.update_employee(employee, self.conn)
+        messagebox.showinfo("Succefull", f"Employee was updated!")
+        self._treeview_data()
+      except TypeError as e:
+        print(e)
+        messagebox.showerror("Error", f"The data type is wrong! {e}")
+      except Exception as e:
+        messagebox.showerror("Failed","Update not completed!")
+    else:
+      messagebox.showerror("Error", "All fields are required!")
+
+  def _delete_one_employee(self):
+    ...
+
+  def _delete_all_employee(self):
+    ...
+  
+
+  # DISPLAY THE INFORMATION ON THE SCREEM
+  def _treeview_data(self):
+    employees = EmployeeService.list_employee(self.conn)
+    self.tree.delete(*self.tree.get_children())
+    for employee in employees:
+      self.tree.insert('', END, values=employee)
+  
+
+  # CLEAN THE FIELDS
+  def _clean(self):
+    self.id_entry.delete(0, END)
+    self.name_entry.delete(0,END)
+    self.phone_entry.delete(0,END)
+    self.role_box.set(role_options[0])
+    self.gender_box.set(gender_options[0])
+    self.salary_entry.delete(0,END)
+  
+
+  # SELECTED A EMPLOYEE WHEN YOU DOUBLE CLICK ON THE EMPLOYEE
+  def _on_item_double_click(self, event):
+    selected = self.tree.focus()
+    if selected:
+        values = self.tree.item(selected, "values")
+        self.id_entry.delete(0, "end")
+        self.id_entry.insert(0, values[0])
+
+        self.name_entry.delete(0, "end")
+        self.name_entry.insert(0, values[1])
+
+        self.phone_entry.delete(0, "end")
+        self.phone_entry.insert(0, values[2])
+
+        self.role_box.set(values[3])
+        self.gender_box.set(values[4])
+
+        self.salary_entry.delete(0, "end")
+        self.salary_entry.insert(0, values[5])
+  
+
+  # CLOSE THE CONNECTION WHEN THE WINDOW IS CLODED
+  def _on_close(self):
+    if self.conn:
+      try:
+        self.conn.close()
+        print("Database connection has been closed.")
+      except Exception as e:
+        print(f"Failed to try close the connection: {e}")
+    
+    self.destroy()
+
+
+  # GET ALL INFORMARION FROM AN EMPLOYEE
+  def _get_data(self, include_id: bool = False):
+      name = self.name_entry.get().strip()
+      phone = self.phone_entry.get().strip()
+      role = self.role_box.get().strip()
+      gender = self.gender_box.get().strip()
+      salary_str = self.salary_entry.get().strip()
+
+      # Validação de campos obrigatórios
+      if not name or not phone or not salary_str:
+          messagebox.showerror("Error", "All fields are required.")
+          return None
+
+      # Validação do salário
+      try:
+          salary = float(salary_str)
+      except ValueError:
+          messagebox.showerror("Error", "Salary must be a number.")
+          return None
+
+      emp = Employee(
+          name=name,
+          phone=phone,
+          role=role,
+          gender=gender,
+          salary=salary
+      )
+
+      # Se for update, precisa do ID também
+      if include_id:
+          emp_id = self.id_entry.get().strip()
+          if not emp_id.isdigit():
+              messagebox.showerror("Error", "ID must be a number for update.")
+              return None
+          emp.id = int(emp_id)
+
+      return emp

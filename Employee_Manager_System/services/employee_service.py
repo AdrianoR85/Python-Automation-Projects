@@ -26,14 +26,14 @@ class EmployeeService:
     return rows
   
   @staticmethod
-  def update_employee(conn):
+  def update_employee(employee: Employee, conn):
     sql = """
       UPDATE employee
       SET name=%s, phone=%s, role=%s, gender=%s, salary=%s
       WHERE id=%s
     """
     cursor = conn.cursor()
-    cursor.execute(sql, Employee.to_tuple_update)
+    cursor.execute(sql, employee.to_tuple_update())
     conn.commit()
     cursor.close()
   

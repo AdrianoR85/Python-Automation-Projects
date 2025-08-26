@@ -29,4 +29,3 @@ def setup_window(self, window, bg_color=COLORS['bg_primary']):
     self.resizable(window['resizable'], window['resizable'])
     self.title(window['title'])
     self.configure(fg_color=bg_color)
-    
