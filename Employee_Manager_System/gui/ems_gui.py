@@ -15,7 +15,7 @@ class ManagementSystemGUI(CTk):
 
     self.protocol("WV_DELETE_WINDOW", self._on_close)
   
- # WINDOW CONFIGURATION
+# WINDOW CONFIGURATION
   def _main_window(self):
     setup_window(self, WINDOW_EMS, COLORS['bg_secondary'])
     center_window(self)
@@ -153,10 +153,7 @@ class ManagementSystemGUI(CTk):
     self.right_frame.grid(row=1, column=1)
 
     self.search_box = CTkComboBox(
-      self.right_frame, 
-      width=150, 
-      values=search_options, # type: ignore   
-      state="readonly") 
+      self.right_frame, width=150, values=search_options, state="readonly",)  # type: ignore
     self.search_box.grid(row=0, column=0)
     self.search_box.set(search_options[0])
     self.search_box.set("Search By")
@@ -164,10 +161,12 @@ class ManagementSystemGUI(CTk):
     self.search_name_entry = CTkEntry(self.right_frame, width=200)
     self.search_name_entry.grid(row=0, column=1)
 
-    self.search_button = CTkButton(self.right_frame, text="Search", width=120)
+    self.search_button = CTkButton(
+      self.right_frame, text="Search", width=120, command= self._search_employee)
     self.search_button.grid(row=0, column=2, pady=5)
 
-    self.showall_button = CTkButton(self.right_frame, text="Show All", width=120)
+    self.showall_button = CTkButton(
+      self.right_frame, text="Show All", width=120, command=self._show_all_employees)
     self.showall_button.grid(row=0, column=3, pady=5)
 
     self.tree = ttk.Treeview(self.right_frame, height=13)
@@ -280,11 +279,60 @@ class ManagementSystemGUI(CTk):
       messagebox.showerror("Error", "All fields are required!")
 
   def _delete_one_employee(self):
-    ...
+    emp_id = self.id_entry.get().strip()
+    emp_name = self.name_entry.get().strip()
+
+    if emp_id:
+      resp = messagebox.askyesnocancel(
+        "Attention",
+        f"Do you want to cancel the employee of ID: {emp_name or emp_id}?",
+        icon="warning") 
+      
+      if resp:
+        try:
+          id = int(emp_id)
+          EmployeeService.delete_employee(id, self.conn)
+          messagebox.showinfo("Successful", f"Employee {emp_name or emp_id} has been delete")
+          self._treeview_data()
+        except TypeError as e:
+          messagebox.showerror("Error", "The type is wrong! {e}")
+        except Exception as e:
+          messagebox.showerror("Failed", f"Cannot delete the employee {emp_name or emp_id}")
+    else:
+      messagebox.showerror("Error", "The ID is required!")
 
   def _delete_all_employee(self):
-    ...
+    resp = messagebox.askyesnocancel(
+        "Attention",
+        f"Do you want to delete all employee",
+        icon="warning") 
+      
+    if resp:
+      try:
+        EmployeeService.delete_all_employee(self.conn)
+        messagebox.showinfo("Successful", f"All employee have been deleted")
+        self._treeview_data()
+      except Exception as e:
+        messagebox.showerror("Failed", f"Cannot delete the employees")
   
+
+  # FUNCTION OF SEARCH BAR
+  def _search_employee(self):
+    search_by = self.search_box.get().strip()
+    search_name = self.search_name_entry.get().strip()
+    
+    if search_by in search_options and search_name:
+      try:
+        employees_found = EmployeeService.search_employee(search_by, search_name, self.conn)
+        self.tree.delete(*self.tree.get_children())
+        for employee in employees_found:
+          self.tree.insert('', END, values=employee)
+      except Exception as e:
+        messagebox.showerror("Failed", f"The search cannnot be done.\n{e}")
+
+  def _show_all_employees(self):
+    self._treeview_data()
+
 
   # DISPLAY THE INFORMATION ON THE SCREEM
   def _treeview_data(self):

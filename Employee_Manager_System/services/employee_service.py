@@ -1,5 +1,5 @@
 from data.models import Employee
-
+from data.role import search_options
 class EmployeeService:
 
   @staticmethod
@@ -26,6 +26,45 @@ class EmployeeService:
     return rows
   
   @staticmethod
+  def search_employee(att: str, value, conn):
+    if att not in search_options:
+        raise ValueError("Invalid search attribute")
+    
+    if att == "Id":
+      try:
+        value = int(value)
+      except ValueError as e:
+        raise ValueError("Error","ID must to be a number")
+
+    if att == "Salary":
+      try:
+        value = float(value)
+      except ValueError as e:
+        raise ValueError("Error","ID must to be a number")
+    
+    if att.lower() in ("name", "phone", "role", "gender"):
+      sql = f"""
+        SELECT id, name, phone, role, gender, salary
+        FROM employee
+        WHERE {att} ILIKE %s;
+      """
+      params = (f"{value}%",)
+    else:
+      sql = f"""
+        SELECT id, name, phone, role, gender, salary
+        FROM employee
+        WHERE {att}=%s;
+      """
+      params = (value,)
+
+    cursor = conn.cursor()
+    cursor.execute(sql, params)
+    rows = cursor.fetchall()
+    cursor.close()
+    return rows
+
+
+  @staticmethod
   def update_employee(employee: Employee, conn):
     sql = """
       UPDATE employee
@@ -40,6 +79,14 @@ class EmployeeService:
   @staticmethod
   def delete_employee(emp_id: int, conn):
     sql = "DELETE FROM employee WHERE id=%s"
+    cursor = conn.cursor()
+    cursor.execute(sql, (emp_id,))
+    conn.commit()
+    cursor.close()
+  
+  @staticmethod
+  def delete_all_employee(conn):
+    sql = "DELETE FROM employee"
     cursor = conn.cursor()
     cursor.execute(sql)
     conn.commit()
