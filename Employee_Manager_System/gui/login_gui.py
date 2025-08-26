@@ -49,16 +49,16 @@ class LoginGUI(CTk):
     # Username Field
     self.username_entry = CTkEntry(
       self,
-      width=COMPONENT_CONFIG['entry_width'],
-      height=COMPONENT_CONFIG['entry_height'],
+      width=COMPONENT_CONFIG['login_entry_w'],
+      height=COMPONENT_CONFIG['login_entry_h'],
       placeholder_text="Entry your username" )
     self.username_entry.place(x=80, y=160)
 
     # Password Field
     self.password_entry = CTkEntry(
       self,
-      width=COMPONENT_CONFIG['entry_width'],
-      height=COMPONENT_CONFIG['entry_height'],
+      width=COMPONENT_CONFIG['login_entry_w'],
+      height=COMPONENT_CONFIG['login_entry_h'],
       placeholder_text="Entry your password",
       show="*" )
     self.password_entry.place(x=80, y=220)
@@ -66,8 +66,8 @@ class LoginGUI(CTk):
     # Button
     self.login_button = CTkButton(
       self,
-      width=COMPONENT_CONFIG['btn_login_width'],
-      height=COMPONENT_CONFIG['btn_login_height'],
+      width=COMPONENT_CONFIG['btn_login_w'],
+      height=COMPONENT_CONFIG['btn_login_h'],
       text="Login",
       font=FONTS['button'],
       command=self._handle_login)

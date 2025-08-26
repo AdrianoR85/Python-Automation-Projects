@@ -1,4 +1,4 @@
-from config.database import DatabaseConfig
+from data.database import DatabaseConfig
 
 class AuthUser:
   @staticmethod

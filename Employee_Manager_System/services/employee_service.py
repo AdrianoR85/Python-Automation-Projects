@@ -1,5 +1,5 @@
 from data.models import Employee
-from data.role import search_options
+from config.options import search_options
 class EmployeeService:
 
   @staticmethod
@@ -30,17 +30,6 @@ class EmployeeService:
     if att not in search_options:
         raise ValueError("Invalid search attribute")
     
-    if att == "Id":
-      try:
-        value = int(value)
-      except ValueError as e:
-        raise ValueError("Error","ID must to be a number")
-
-    if att == "Salary":
-      try:
-        value = float(value)
-      except ValueError as e:
-        raise ValueError("Error","ID must to be a number")
     
     if att.lower() in ("name", "phone", "role", "gender"):
       sql = f"""

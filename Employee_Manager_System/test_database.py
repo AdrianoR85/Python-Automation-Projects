@@ -1,4 +1,4 @@
-from config.database import DatabaseConfig
+from data.database import DatabaseConfig
 
 if __name__ == "__main__":
   print("Testing database connection...")

@@ -43,31 +43,35 @@ COLORS = {
     # States
     'error': '#EF4444',          # Red
     'success': '#10B981',        # Green
-    'warning': '#F59E0B'         # Yellow
+    'warning': '#F59E0B',         # Yellow
+
+    'hover_del_btn': "#FF8080"
 }
 
 FONTS = {
     'title': ('Segoe UI', 22, 'bold'),      # Larger title
     'subtitle': ('Segoe UI', 16, 'normal'),  # Subtitle
     'button': ('Segoe UI', 14, 'bold'),      # Buttons
-    'entry': ('Segoe UI', 13, 'normal'),     # Input fields
+    'entry': ('Segoe UI', 12, 'normal'),     # Input fields
     'label': ('Segoe UI', 14, 'bold'),     # Labels
     'small': ('Segoe UI', 12, 'normal')      # Small text
 }
 
 COMPONENT_CONFIG = {
-    'entry_width': 260,
-    'entry_height': 45,
+    'login_entry_w': 260,
+    'login_entry_h': 45,
 
     'btn_width': 160,
 
-    'btn_search_with': 120,
+    'btn_frame_w': 160,
 
-    'btn_login_width': 260,
-    'btn_login_height': 45,
+    'btn_search_w': 120,
 
-    'small_entry_width': 140,
-    'small_entry_height': 30
+    'btn_login_w': 260,
+    'btn_login_h': 45,
+
+    'small_entry_w': 160,
+    'small_entry_h': 30
 }
 
 # Asset paths

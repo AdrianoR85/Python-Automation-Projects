@@ -1,7 +1,7 @@
 from customtkinter import *
 from util.window_utils import center_window, get_image, setup_window
 from config.setting import WINDOW_EMS, COLORS, COMPONENT_CONFIG, FONTS
-from data.role import role_options, gender_options, search_options
+from config.options import role_options, gender_options, search_options
 from data.models import Employee
 from tkinter import ttk, messagebox
 from services.employee_service import EmployeeService
@@ -47,12 +47,12 @@ class ManagementSystemGUI(CTk):
       font=FONTS['label'], 
       text_color=COLORS['text_light']
     )
-    self.id_label.grid(row=0, column=0, padx=20, pady=15, stick='w')
+    self.id_label.grid(row=0, column=0, padx=20, pady=12, stick='w')
 
     self.id_entry = CTkEntry(
       self.left_frame, 
-      width=COMPONENT_CONFIG['small_entry_width'], 
-      height=COMPONENT_CONFIG['small_entry_height'],
+      width=COMPONENT_CONFIG['small_entry_w'], 
+      height=COMPONENT_CONFIG['small_entry_h'],
       font=FONTS['entry']
     )
     self.id_entry.grid(row=0, column=1)
@@ -68,8 +68,8 @@ class ManagementSystemGUI(CTk):
 
     self.name_entry = CTkEntry(
       self.left_frame, 
-      width=COMPONENT_CONFIG['small_entry_width'], 
-      height=COMPONENT_CONFIG['small_entry_height'],
+      width=COMPONENT_CONFIG['small_entry_w'], 
+      height=COMPONENT_CONFIG['small_entry_h'],
       font=FONTS['entry']
     )
     self.name_entry.grid(row=1, column=1)
@@ -85,8 +85,8 @@ class ManagementSystemGUI(CTk):
 
     self.phone_entry = CTkEntry(
       self.left_frame, 
-      width=COMPONENT_CONFIG['small_entry_width'], 
-      height=COMPONENT_CONFIG['small_entry_height'],
+      width=COMPONENT_CONFIG['small_entry_w'], 
+      height=COMPONENT_CONFIG['small_entry_h'],
       font=FONTS['entry']
     )
     self.phone_entry.grid(row=2, column=1)
@@ -102,8 +102,8 @@ class ManagementSystemGUI(CTk):
 
     self.role_box = CTkComboBox(
       self.left_frame, 
-      width=COMPONENT_CONFIG["small_entry_width"], 
-      height=COMPONENT_CONFIG["small_entry_height"],
+      width=COMPONENT_CONFIG["small_entry_w"], 
+      height=COMPONENT_CONFIG["small_entry_h"],
       values=role_options,
       state="readonly",
       font=FONTS['entry']
@@ -122,8 +122,8 @@ class ManagementSystemGUI(CTk):
 
     self.gender_box = CTkComboBox(
       self.left_frame, 
-      width=COMPONENT_CONFIG["small_entry_width"], 
-      height=COMPONENT_CONFIG["small_entry_height"],
+      width=COMPONENT_CONFIG["small_entry_w"], 
+      height=COMPONENT_CONFIG["small_entry_h"],
       values=gender_options,
       state="readonly",
       font=FONTS['entry']
@@ -142,8 +142,8 @@ class ManagementSystemGUI(CTk):
 
     self.salary_entry = CTkEntry(
       self.left_frame, 
-      width=COMPONENT_CONFIG["small_entry_width"], 
-      height=COMPONENT_CONFIG["small_entry_height"],
+      width=COMPONENT_CONFIG["small_entry_w"], 
+      height=COMPONENT_CONFIG["small_entry_h"],
       font=FONTS['entry']
     )
     self.salary_entry.grid(row=5, column=1)
@@ -183,12 +183,12 @@ class ManagementSystemGUI(CTk):
 
     self.tree.config(show='headings')
 
-    self.tree.column(search_options[0], width=80)
+    self.tree.column(search_options[0], width=50)
     self.tree.column(search_options[1], width=160)
     self.tree.column(search_options[2], width=130)
-    self.tree.column(search_options[3], width=160)
-    self.tree.column(search_options[4], width=90)
-    self.tree.column(search_options[5], width=90)
+    self.tree.column(search_options[3], width=150)
+    self.tree.column(search_options[4], width=95)
+    self.tree.column(search_options[5], width=95)
     
     self._treeview_data()
 
@@ -200,37 +200,39 @@ class ManagementSystemGUI(CTk):
 
     self.new_button = CTkButton(
       self.btn_frame, 
-      text="New Employee", 
+      text="New", 
       font=FONTS['button'], 
-      width=160,
+      width=COMPONENT_CONFIG['btn_frame_w'],
       corner_radius=15,
       command=self._clean)
-    self.new_button.grid(row=0, column=0, padx=10, pady=20)
+    self.new_button.grid(row=0, column=0, padx=10, pady=20, )
 
     self.add_button = CTkButton(
       self.btn_frame, 
-      text="Add Employee", 
+      text="Add", 
       font=FONTS['button'], 
-      width=160,
+      width=COMPONENT_CONFIG['btn_frame_w'],
       corner_radius=15, 
       command=self._add_employee)
     self.add_button.grid(row=0, column=1, padx=10, pady=20)
 
     self.update_button = CTkButton(
       self.btn_frame, 
-      text="Update Employee", 
+      text="Update", 
       font=FONTS['button'], 
-      width=160,
+      width=COMPONENT_CONFIG['btn_frame_w'],
       corner_radius=15,
       command=self._update_employee)
     self.update_button.grid(row=0, column=2, padx=10, pady=20)
 
     self.delete_button = CTkButton(
       self.btn_frame, 
-      text="Delete Employee", 
+      text="Delete", 
       font=FONTS['button'], 
-      width=160,
+      width=COMPONENT_CONFIG['btn_frame_w'],
       corner_radius=15,
+      fg_color=COLORS['error'],
+      hover_color=COLORS['hover_del_btn'],
       command=self._delete_one_employee )
     self.delete_button.grid(row=0, column=3, padx=10, pady=20)
 
@@ -238,8 +240,10 @@ class ManagementSystemGUI(CTk):
       self.btn_frame, 
       text="Delete All", 
       font=FONTS['button'], 
-      width=160,
+      width=COMPONENT_CONFIG['btn_frame_w'],
       corner_radius=15,
+      fg_color=COLORS['error'],
+      hover_color=COLORS['hover_del_btn'],
       command=self._delete_all_employee )
     self.delete_all_button.grid(row=0, column=4, padx=10, pady=20)
 
@@ -319,16 +323,33 @@ class ManagementSystemGUI(CTk):
   # FUNCTION OF SEARCH BAR
   def _search_employee(self):
     search_by = self.search_box.get().strip()
-    search_name = self.search_name_entry.get().strip()
+    search_value = self.search_name_entry.get().strip()
+
+    if not search_value:
+        messagebox.showerror("Error", "Search field cannot be empty.")
+        return
     
-    if search_by in search_options and search_name:
-      try:
-        employees_found = EmployeeService.search_employee(search_by, search_name, self.conn)
+    if search_by.lower() == "id":
+        try:
+            search_value = int(search_value)
+        except ValueError:
+            messagebox.showerror("Error", "ID must be a number.")
+            return
+
+    if search_by.lower() == "salary":
+        try:
+            search_value = float(search_value)
+        except ValueError:
+            messagebox.showerror("Error", "Salary must be a number.")
+            return
+
+    try:
+        employees_found = EmployeeService.search_employee(search_by, search_value, self.conn)
         self.tree.delete(*self.tree.get_children())
         for employee in employees_found:
-          self.tree.insert('', END, values=employee)
-      except Exception as e:
-        messagebox.showerror("Failed", f"The search cannnot be done.\n{e}")
+            self.tree.insert('', END, values=employee)
+    except Exception as e:
+        messagebox.showerror("Failed", str(e))
 
   def _show_all_employees(self):
     self._treeview_data()
