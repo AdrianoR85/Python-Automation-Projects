@@ -203,17 +203,51 @@ Dependendo do projeto, pode variar:
 </p>
 
 ### *Description*
-
+This project is an Employee Management System.
+It helps companies to manage employee information like name, phone, role, gender, and salary.
+The system has a graphical interface where users can login and do CRUD operations (Create, Read, Update, Delete).
 ### *Technologies Used*
-<p>
-  
+<p> 
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/> 
+  <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL"/> 
+  <img src="https://img.shields.io/badge/psycopg2-2F5597?style=for-the-badge&logo=python&logoColor=white" alt="psycopg2"/> 
+  <img src="https://img.shields.io/badge/CustomTkinter-FFDD00?style=for-the-badge&logo=python&logoColor=black" alt="CustomTkinter"/> 
+  <img src="https://img.shields.io/badge/dotenv-404040?style=for-the-badge&logo=python&logoColor=white" alt="dotenv"/> 
 </p>
 
 ### *Project Structure*
-
+```
+EMPLOYEE_MANAGER_SYSTEM/
+├── assets/                 # Images and resources
+├── config/                 # Configurations
+│   ├── setting.py
+├── data/                   # Models and data
+│   ├── role.py
+│   ├── models.py
+├── gui/                    # Graphical interface
+│   ├── ems_gui.py          # Main system window
+│   └── login_gui.py        # Login window
+├── services/               # Business logic
+│   └── employee_service.py
+├── util/                   # Utility functions
+│   └── window_utils.py
+└── app.py                  # Main file
+```
 ### *Features*
-
+- Login with PostgreSQL user.
+- Add new employees.
+- View employee list.
+- Update employee information.
+- Delete employees.
+- Search employees by name, role, phone, salary, or ID.
+- Modern and clean UI with CustomTkinter.
 <br>
+
+ ### *Images*
+ <p>
+    <img src="images/login_page.png" alt="Screenshot do Programa" width="400"/>
+    <img src="images/ems_page.png" alt="Screenshot do Programa" width="400"/>
+ </p>
 
 ↩️ [Menu](#-projects-menu)
 
