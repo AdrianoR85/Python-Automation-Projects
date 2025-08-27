@@ -203,9 +203,12 @@ Dependendo do projeto, pode variar:
 </p>
 
 ### *Description*
-This project is an Employee Management System.
-It helps companies to manage employee information like name, phone, role, gender, and salary.
-The system has a graphical interface where users can login and do CRUD operations (Create, Read, Update, Delete).
+This is an Employee Management System developed to practice the Insert, Update, and Delete features for employee data. To connect to the system, the user needs a username and password, which are created separately by me, in my role as a DBA.
+
+The project is inspired by a tutorial from the YouTube channel Coding Lifestyle 4u, but it is not a copy; I designed and implemented it myself. I used a three-layer architecture, with separate folders for each layer: GUI for the presentation layer, services for the business logic layer, and data for the data access layer.
+
+The project is implemented in Python, using the object-oriented paradigm, including classes, methods, and decorators like @staticmethod and @dataclass. To store and manage data, I used the PostgreSQL DBMS.
+
 ### *Technologies Used*
 <p> 
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/> 
@@ -223,6 +226,10 @@ EMPLOYEE_MANAGER_SYSTEM/
 |   ├── options.py             
 │   ├── setting.py
 ├── data/                   # Models and data
+|   ├── scripts 
+|   |   ├── create_table.sql
+|   |   ├── inserts.sql
+|   |   └── trigger.sql 
 │   ├── database.py
 │   ├── models.py
 ├── gui/                    # Graphical interface
