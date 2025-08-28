@@ -16,7 +16,7 @@ Here’s the list of projects in this portfolio.
 Click a project name to jump to its section.
 - [x] [File Organization](#-file-organization)
 - [x] [Github Manager](#-gitHub-manager)
-- [ ] [Employee Management](#-employee-management)
+- [x] [Employee Management](#-employee-management)
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
