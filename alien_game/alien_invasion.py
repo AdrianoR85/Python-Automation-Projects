@@ -25,13 +25,31 @@ class AlienInvasion:
 
   def _update(self):
     self.screen.fill(self.settings.bg_color)
+    self.ship.update()
     self.ship.blitme()
     pg.display.flip() # Keep the most recent screen visible.
     
-  def _check_event(self):
+  def _check_event(self,):
     for event in pg.event.get():
       if event.type == pg.QUIT:
         sys.exit()
+      elif event.type == pg.KEYDOWN:
+        self._check_keydown_event(event)
+      elif event.type == pg.KEYUP:
+        self._check_keyup_event(event)
+      
+  def _check_keydown_event(self, event):
+    if event.key == pg.K_RIGHT:
+      self.ship.moving_right = True
+    elif event.key == pg.K_LEFT:
+      self.ship.moving_left = True
+
+  def _check_keyup_event(self, event):
+    if event.key == pg.K_RIGHT:
+      self.ship.moving_right = False
+    elif event.key == pg.K_LEFT:
+      self.ship.moving_left = False
+
 
 
 if __name__ == "__main__":
