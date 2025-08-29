@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>centralwidget</class>
+ <widget class="QDialog" name="centralwidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>703</width>
+    <height>541</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QWidget" name="icon_only_widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>81</width>
+     <height>541</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QWidget" name="icon_text_widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>0</y>
+     <width>141</width>
+     <height>541</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QWidget" name="main_screen_widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>130</y>
+     <width>481</width>
+     <height>411</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(84, 255, 141);</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="header_widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>10</y>
+     <width>481</width>
+     <height>91</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
