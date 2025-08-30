@@ -19,10 +19,10 @@ class Ship:
   
   def update(self):
     if self.moving_right and self.rect.right < self.screen_rect.right:
-      self.x += self.game_settings.ship_speed_factor
+      self.x += self.game_settings.ship_speed
     
     if self.moving_left and self.rect.left > 0:
-      self.x -= self.game_settings.ship_speed_factor
+      self.x -= self.game_settings.ship_speed
     
     self.rect.centerx = self.x # type: ignore
 
