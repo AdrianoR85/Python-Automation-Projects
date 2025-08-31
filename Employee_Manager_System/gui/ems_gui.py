@@ -289,7 +289,7 @@ class ManagementSystemGUI(CTk):
     if emp_id:
       resp = messagebox.askyesnocancel(
         "Attention",
-        f"Do you want to cancel the employee of ID: {emp_name or emp_id}?",
+        f"Do you want to cancel the employee {emp_name or emp_id}?",
         icon="warning") 
       
       if resp:
