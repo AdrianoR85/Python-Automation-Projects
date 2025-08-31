@@ -63,16 +63,16 @@ class AlienInvasion:
     alien = Alien(self)
     self.aliens.add(alien)
 
-    alien_x, alien_y = alien.rect.size
-    current_x, current_y = alien_x, alien_y
-    while current_y < (self.settings.screen_height - 3 * alien_y):
-      while current_x < (self.settings.screen_width - 2 * alien_x):
+    alien_width, alien_height = alien.rect.size
+    current_x, current_y = alien_width, alien_height
+    while current_y < (self.settings.screen_height - 3 * alien_height):
+      while current_x < (self.settings.screen_width - 2 * alien_width):
         self._create_alien(current_x, current_y)
-        current_x += 2 * alien_x
+        current_x += 2 * alien_width
       
       # Finished a row; reset x value, and increment y value.
-      current_x = alien_x
-      current_y += 2 * alien_y
+      current_x = alien_width
+      current_y += 2 * alien_height
   
   def _create_alien(self, x_pos, y_pos):
     new_alien = Alien(self)
@@ -96,7 +96,7 @@ class AlienInvasion:
         self._change_fleet_direction()
         break
 
-  def _check_event(self,):
+  def _check_event(self):
     for event in pg.event.get():
       if event.type == pg.QUIT:
         sys.exit()
