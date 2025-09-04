@@ -9,6 +9,7 @@ Hello! This repository serves as my central portfolio, dedicated to showcasing m
   <img src="https://img.shields.io/badge/Desktop_Apps-5E5C64?style=for-the-badge&logo=gnome&logoColor=white" alt="Desktop Apps"/>
   <img src="https://img.shields.io/badge/APIs-6B21A8?style=for-the-badge&logo=serverless&logoColor=white" alt="APIs"/>
   <img src="https://img.shields.io/badge/Machine_Learning-00A693?style=for-the-badge&logo=openai&logoColor=white" alt="Machine Learning"/>
+  <img src="https://img.shields.io/badge/Game_Development-FF5733?style=for-the-badge" alt="Game Development"/>
 </p>
 
 ## 📋 Projects Menu
@@ -17,6 +18,7 @@ Click a project name to jump to its section.
 - [x] [File Organization](#-file-organization)
 - [x] [Github Manager](#-gitHub-manager)
 - [x] [Employee Management](#-employee-management)
+- [ ] [Alien Invasion Game](#-alien-invasion-game)
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -260,6 +262,69 @@ EMPLOYEE_MANAGER_SYSTEM/
 
 ↩️ [Menu](#-projects-menu)
 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## 🚀 Alien Invasion Game
+<p>
+  <img src="https://img.shields.io/badge/Game_Development-FF5733?style=for-the-badge" alt="Game Development"/>
+</p>
+
+### *Description*
+This is a game developed in Python with the Pygame library, inspired by the project from the book Python Crash Course. The goal is to learn the basics of game development, including sprites, collisions, keyboard events, and the main loop.
+
+### *Technologies Used*
+<p>
+  <img src="https://img.shields.io/badge/Pygame-14354C?style=for-the-badge&logo=python&logoColor=white" alt="Pygame"/>
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
+</p>
+
+### *Scripts*
+**How to create window with PyGame**
+```python
+  import pygame
+  import sys
+
+  class AlienInvasion:
+    def __init__(self):
+      """Initialize the game and create resources."""
+      pygame.init() # start the pygame and its modules (graphics, sound, etc.)
+
+     # Clock controls the frame reate
+      self.clock = pygame.time.Clock()
+
+      # Create the main game window with width=800px and height=600px.
+      self.screen = pygame.display.set_mode((800,600))
+
+      # Set the window title (appears at the top of the window).
+      pygame.display.set_caption("Alien Invasion")
+
+      # Define a background color (light gray).
+      self.bg_color = (230,230,230)
+
+    def run_game(self):
+      """Start the main loop of the game."""
+      while True:
+        # 1. Watch for keyboard and mouse events.
+        for event in pygame.event.get():
+          if event.type  == pygame.QUIT: # User clicks the close button
+            sys.exit() # Exit the game safely
+
+        # 2. Redraw the screen during each pass though the loop.
+        self.screen.fill(self.bg_color) # Fill background with color.
+
+        # 3. Make the most recently draw screen visible.
+        pygame.s.flip() # Leave the most recent screen visible
+
+        # 4. Limit the loop to 60 frames per second (FPS).
+        self.clock.tick(60)
+
+# Run the game only if this file is executed directly (not imported)
+  if __name__ == "__main__":
+    ai = AlienInvasion()
+    ai.run_game()
+```
+
+↩️ [Menu](#-projects-menu)
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## 📬 Contact
 
